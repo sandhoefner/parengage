@@ -10,7 +10,7 @@ document.getElementById('toolbar').appendChild(ul);
 
 var toolbar = ['Grades', 'Calendar', 'Email', 'Tasks', 'Colleges', 'Forum', 'My History', 'Help', 'Log Out'];
 
-var links = ['Grades.html', 'Calendar.html', 'Email.html', 'Tasks.html', 'Colleges.html', 'Forum.html', 'My_History.html', 'Help.html', 'login.html'];
+var links = ['index.html', 'calendar.html', 'email.html', 'tasks.html', 'colleges.html', 'forum.html', 'my_history.html', 'help.html', 'login.html'];
 
 for (button in toolbar) {
   var li = document.createElement('li');
