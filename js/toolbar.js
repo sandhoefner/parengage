@@ -1,9 +1,11 @@
 // add toolbar to page
 
 var div = document.createElement('div');
-div.className = 'sidebar-wrapper'
+div.className = 'sidebar-wrapper col-md-2 col-xs-2'
 div.id = 'toolbar';
-document.body.appendChild(div);
+containerDiv = document.getElementById("content");
+document.body.insertBefore(div, containerDiv)
+//document.body.appendChild(div);
 
 var ul = document.createElement('ul');
 ul.className = 'sidebar-nav';
