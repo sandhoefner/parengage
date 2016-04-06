@@ -18,21 +18,6 @@
     padding-left: 250px;
 }
 
-#sidebar-wrapper {
-    z-index: 1000;
-    position: fixed;
-    left: 250px;
-    width: 0;
-    height: 100%;
-    margin-left: -250px;
-    overflow-y: auto;
-    background: #000;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
 #wrapper.toggled #sidebar-wrapper {
     width: 250px;
 }
@@ -58,7 +43,6 @@
 }
 
 .sidebar-nav li {
-    text-indent: 20px;
     line-height: 40px;
 }
 
@@ -119,4 +103,17 @@
         position: relative;
         margin-right: 0;
     }
+}
+
+.glyphicon {
+    font-size: 25px;
+    padding: 5px;
+}
+
+#toolbar {
+    margin-top: 20px;
+}
+
+.toolbar_button {
+    text-align: left;
 }
