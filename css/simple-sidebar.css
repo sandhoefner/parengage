@@ -117,3 +117,5 @@
 .toolbar_button {
     text-align: left;
 }
+
+.clickable { cursor: pointer; }
