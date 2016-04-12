@@ -1,0 +1,46 @@
+{
+	"parentTotalData" : 
+	[
+		{
+			"gradeLevel" : 9,
+			"parents" : 203
+		},
+		{
+			"gradeLevel" : 10,
+			"parents" : 242
+		},
+		{
+			"gradeLevel" : 11,
+			"parents" : 196
+		},
+		{
+			"gradeLevel" : 12,
+			"parents" : 207
+		}
+
+	],
+
+	"weeklyParentData" : 
+	{
+		"9/5" : 
+		[
+			{
+				"gradeLevel" : 9,
+				"parents" : 125
+			},
+			{
+				"gradelevel" : 10,
+				"parents" : 208
+			},
+			{
+				"gradelevel" : 11,
+				"parents" : 152
+			},
+			{
+				"gradelevel" : 12,
+				"parents" : 98
+			}
+		]
+	}
+
+}
