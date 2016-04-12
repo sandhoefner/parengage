@@ -1,14 +1,30 @@
 <html>
   <head>
     <title>Parengage - Email</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/simple-sidebar.css">
+    <script src= "https://code.jquery.com/jquery-git.min.js"></script>
+    <script src = "js/grades.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <h1>Parengage - Email</h1>
-    <script src="js/toolbar.js"></script>
-    <input type="text" name="email_body" placeholder="Type your message here!">
-    <br>
-    <button id="send_email">Send</button>
-
+      <div class="col-md-4 col-sm-6 col-xs-8" id="content">
+        <h1>Parengage - Email</h1>
+        <script src="js/toolbar.js"></script>
+        <select class="form-control" id="teacher_select">
+          <option value="dummy">Select a teacher!</option>
+          <option value="Bernd">Bernd</option>
+          <option value="Gajos">Gajos</option>
+          <option value="King">King</option>
+          <option value="Panda">Panda</option>
+        </select>
+        <br>
+         <input class="form-control" type="text" name="email_subject" placeholder="Subject">
+         <br>
+        <textarea class="form-control" type="text" name="email_body" placeholder="Message"></textarea>
+        <br>
+        <button class="btn btn-default" type="submit" id="send_email">Send</button>
+      </div>
   </body>
 
 

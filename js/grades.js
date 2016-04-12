@@ -16,3 +16,10 @@ for (class_info in classes) {
   li.innerHTML = 'Class: ' + classes[class_info].class_name + '  Grade: ' + classes[class_info].grade + '</a>';
   document.getElementById('grades_list').appendChild(li);
 }
+// Test to make sure we can grab the grades data from data.json
+// Requires running a local server
+
+$.getJSON("../data.json", function(data){
+	console.log(data);
+})
+>>>>>>> bdb1f71f785e8d29ade46998cb9f752e08a9099a
