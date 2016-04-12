@@ -1,12 +1,46 @@
-<html>
+<!-- <html>
   <head>
     <title>Parengage - Calendar</title>
   </head>
   <body>
     <h1>Parengage - Calendar</h1>
     <script src="js/toolbar.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=OnLoadCallback"></script>
   </body>
+</html>
+ -->
+<html>
+  <head>
+    <script>
+      function appendResults(text) {
+        var results = document.getElementById('results');
+        results.appendChild(document.createElement('P'));
+        results.appendChild(document.createTextNode(text));
+      }
 
+      function makeRequest() {
+        var request = gapi.client.urlshortener.url.get({
+          'shortUrl': 'http://goo.gl/fbsS'
+        });
+        request.then(function(response) {
+          appendResults(response.result.longUrl);
+        }, function(reason) {
+          console.log('Error: ' + reason.result.error.message);
+        });
+      }
 
-
+      function init() {
+        gapi.client.setApiKey('YOUR API KEY');
+        gapi.client.load('urlshortener', 'v1').then(makeRequest);
+      }
+    </script>
+    <script src="https://apis.google.com/js/client.js?onload=init"></script>
+    <title>Parengage - Calendar</title>
+  </head>
+  <body>
+   <h1>Parengage - Calendar</h1>
+    <script src="js/toolbar.js"></script>
+    <iframe src="https://calendar.google.com/calendar/embed?src=college.harvard.edu_bjtipmdf5chk32ee26alt64950%40group.calendar.google.com&ctz=America/New_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    <div id="results"></div>
+  </body>
 </html>
