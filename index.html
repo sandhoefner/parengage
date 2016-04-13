@@ -17,14 +17,22 @@
 </body>
 
 <script>
+// should make table code more flexible - what if we add a teacher to the json, for example
     $.getJSON("data.json", function(data) {
 
         function detail(teacher) {
-            document.getElementById("grade_table").remove();
-            var div = document.createElement('div');
-            div.id = 'grade_details';
-            div.innerText = "Details for " + key_array[teacher - 1];
-            document.body.appendChild(div);
+
+            document.getElementById("table_div").innerHTML = "Details for " + key_array[teacher - 1];
+            // specific_tableCreate();
+            console.log(data_array[teacher-1].detailedGrades);
+            document.getElementById("table_div").appendChild(document.createElement("br"));
+            var back_button = document.createElement("button");
+            back_button.innerText = "Back"
+            back_button.onclick = function() {
+            	document.getElementById("table_div").innerHTML = "";
+            	overall_tableCreate();
+            }
+            document.getElementById("table_div").appendChild(back_button);
         }
 
 
@@ -45,8 +53,61 @@
             }
         }
 
+        function specific_tableCreate() {
+                tbl = document.createElement('table');
+            tbl.className = "table .table-striped";
+            tbl.id = "grade_table";
+            tbl.style.width = '100%';
+            tbl.style.border = '1px solid black';
+
+            for (var i = 0; i < 7; i++) {
+                var tr = tbl.insertRow();
+                tr.id = i;
+                if (i>0) {
+                tr.onclick = function() {
+                    detail(this.id)
+                };
+                tr.className = "clickable";
+            }
+
+            gen_headers = ["Assignment", "Grade"]
+
+                for (var j = 0; j < 2; j++) {
+
+
+                	if (i==0) {
+                		//populate headers here
+                		var td = document.createElement("th");
+                		tr.appendChild(td);
+                	} else {
+                    var td = tr.insertCell();
+                }
+                    if (i > 0) {
+
+
+                        if (j == 1) {
+                            td.appendChild(document.createTextNode(key_array[i - 1]));
+                        } else if (j == 0) {
+                            // not teacher column
+                            td.appendChild(document.createTextNode(data_array[i - 1].subject));
+                        } else {
+                            td.appendChild(document.createTextNode(data_array[i - 1].grade));
+
+                        }
+                    } else {
+                        td.appendChild(document.createTextNode(gen_headers[j]))
+                    }
+                    td.style.border = '1px solid black';
+                }
+
+            }
+
+            document.getElementById("table_div").appendChild(tbl);
+        }
+        
+
         // thanks to http://stackoverflow.com/questions/14643617/create-table-using-javascript
-        function tableCreate() {
+        function overall_tableCreate() {
             var body = document.body,
                 tbl = document.createElement('table');
             tbl.className = "table .table-striped";
@@ -81,7 +142,6 @@
                             td.appendChild(document.createTextNode(key_array[i - 1]));
                         } else if (j == 0) {
                             // not teacher column
-                            console.log(data_array[i - 1]);
                             td.appendChild(document.createTextNode(data_array[i - 1].subject));
                         } else {
                             td.appendChild(document.createTextNode(data_array[i - 1].grade));
@@ -97,7 +157,7 @@
 
             document.getElementById("table_div").appendChild(tbl);
         }
-        tableCreate();
+        overall_tableCreate();
     });
 </script>
 
