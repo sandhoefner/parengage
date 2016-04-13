@@ -1,17 +1,19 @@
 <html>
-	<head>
-		<title>Parengage - Grades</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		<link rel="stylesheet" href="css/simple-sidebar.css">
-	</head>
-	<body>
-		<div class="col-md-4 col-sm-6 col-xs-8" id="content">
-			<h1>Parengage - Grades</h1>
-		    <script src="js/toolbar.js"></script>
-<script src="js/jquery-2.2.3.min.js"></script>
-		    <div id="table_div"></div>
 
-<!--
+<head>
+    <title>Parengage - Grades</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/simple-sidebar.css">
+</head>
+
+<body>
+    <div class="col-md-4 col-sm-6 col-xs-8" id="content">
+        <h1>Parengage - Grades</h1>
+        <script src="js/toolbar.js"></script>
+        <script src="js/jquery-2.2.3.min.js"></script>
+        <div id="table_div"></div>
+
+        <!--
 		    <table id="grade_table" class="table .table-striped" style="width:100%">
 			    <tbody>
 			    <tr>
@@ -38,82 +40,82 @@
 			</table>
 -->
 
-    	</div>
-	</body>
+    </div>
+</body>
 
 <script>
+    $.getJSON("data.json", function(data) {
 
-
-$.getJSON("data.json", function(data) {
-
-   function detail(teacher) {
-  document.getElementById("grade_table").remove();
-  var div = document.createElement('div');
-  div.id = 'grade_details';
-  div.innerText = "Details for " + key_array[teacher-1];
-  document.body.appendChild(div);
-}
-
-
-var headers=["Subject", "Teacher", "Grade"]
-
-
-var data_array = [];
-for (var key in data) {
-  if (data.hasOwnProperty(key)) {
-    data_array.push(data[key]);
-  }
-}
-
-var key_array = [];
-for (var key in data) {
-  if (data.hasOwnProperty(key)) {
-    key_array.push(key);
-  }
-}
-
-// thanks to http://stackoverflow.com/questions/14643617/create-table-using-javascript
-function tableCreate(){
-    var body = document.body,
-        tbl  = document.createElement('table');
-        tbl.className="table .table-striped";
-tbl.id = "grade_table";
-    tbl.style.width  = '100%';
-    tbl.style.border = '1px solid black';
-
-    for(var i = 0; i < 7; i++){
-        var tr = tbl.insertRow();
-        tr.id = i;
-        tr.onclick=function() {detail(this.id)};
-        tr.className = "clickable";
-
-        for(var j = 0; j < 3; j++){
-                var td = tr.insertCell();
-                if (i>0) {
-
-
-if (j==1) {
-                td.appendChild(document.createTextNode(key_array[i-1]));
-            } else if (j==0) {
-            	// not teacher column
-            	console.log(data_array[i-1]);
-            	td.appendChild(document.createTextNode(data_array[i-1].subject));
-            } else {
-            	td.appendChild(document.createTextNode(data_array[i-1].grade));
-
-            }
-            } else {
-            	td.appendChild(document.createTextNode(headers[j]))
-            }
-                td.style.border = '1px solid black';
-            }
-            
+        function detail(teacher) {
+            document.getElementById("grade_table").remove();
+            var div = document.createElement('div');
+            div.id = 'grade_details';
+            div.innerText = "Details for " + key_array[teacher - 1];
+            document.body.appendChild(div);
         }
-    
-    body.appendChild(tbl);
-}
-tableCreate();
-});
+
+
+        var headers = ["Subject", "Teacher", "Grade"]
+
+
+        var data_array = [];
+        for (var key in data) {
+            if (data.hasOwnProperty(key)) {
+                data_array.push(data[key]);
+            }
+        }
+
+        var key_array = [];
+        for (var key in data) {
+            if (data.hasOwnProperty(key)) {
+                key_array.push(key);
+            }
+        }
+
+        // thanks to http://stackoverflow.com/questions/14643617/create-table-using-javascript
+        function tableCreate() {
+            var body = document.body,
+                tbl = document.createElement('table');
+            tbl.className = "table .table-striped";
+            tbl.id = "grade_table";
+            tbl.style.width = '100%';
+            tbl.style.border = '1px solid black';
+
+            for (var i = 0; i < 7; i++) {
+                var tr = tbl.insertRow();
+                tr.id = i;
+                tr.onclick = function() {
+                    detail(this.id)
+                };
+                tr.className = "clickable";
+
+                for (var j = 0; j < 3; j++) {
+                    var td = tr.insertCell();
+                    if (i > 0) {
+
+
+                        if (j == 1) {
+                            td.appendChild(document.createTextNode(key_array[i - 1]));
+                        } else if (j == 0) {
+                            // not teacher column
+                            console.log(data_array[i - 1]);
+                            td.appendChild(document.createTextNode(data_array[i - 1].subject));
+                        } else {
+                            td.appendChild(document.createTextNode(data_array[i - 1].grade));
+
+                        }
+                    } else {
+                        td.appendChild(document.createTextNode(headers[j]))
+                    }
+                    td.style.border = '1px solid black';
+                }
+
+            }
+
+            body.appendChild(tbl);
+        }
+        tableCreate();
+    });
 </script>
 
 </html>
