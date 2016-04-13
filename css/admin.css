@@ -3,3 +3,11 @@
 	background-color: #D3D3D3;
 	padding: 10px;
 }
+
+.taskInput {
+	padding: 2.5%;
+}
+
+.task {
+	border-bottom: 1px solid gray;
+}
