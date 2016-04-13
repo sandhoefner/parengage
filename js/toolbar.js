@@ -24,3 +24,5 @@ for (button in toolbar) {
 
   document.getElementById('toolbar_list').appendChild(li);
 }
+
+
