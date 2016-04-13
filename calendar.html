@@ -1,35 +1,51 @@
-<html>
-  <head>
-    <script>
-      function appendResults(text) {
-        var results = document.getElementById('results');
-        results.appendChild(document.createElement('P'));
-        results.appendChild(document.createTextNode(text));
-      }
+<!doctype html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>Basic initialization</title>
+</head>
+  <script src="calendarJS/codebase/dhtmlxscheduler.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="calendarJS/codebase/dhtmlxscheduler.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/simple-sidebar.css">
 
-      function makeRequest() {
-        var request = gapi.client.urlshortener.url.get({
-          'shortUrl': 'http://goo.gl/fbsS'
-        });
-        request.then(function(response) {
-          appendResults(response.result.longUrl);
-        }, function(reason) {
-          console.log('Error: ' + reason.result.error.message);
-        });
-      }
+  
+<style type="text/css" media="screen">
+  html, body{
+    margin:0px;
+    padding:0px;
+    height:100%;
+    overflow:hidden;
+  } 
+</style>
 
-      function init() {
-        gapi.client.setApiKey('YOUR API KEY');
-        gapi.client.load('urlshortener', 'v1').then(makeRequest);
-      }
-    </script>
-    <script src="https://apis.google.com/js/client.js?onload=init"></script>
-    <title>Parengage - Calendar</title>
-  </head>
-  <body>
-   <h1>Parengage - Calendar</h1>
+<script type="text/javascript" charset="utf-8">
+  function init() {
+    scheduler.config.xml_date="%Y-%m-%d %H:%i";
+    scheduler.config.readonly = true;
+    scheduler.init('scheduler_here',new Date(2016,3,13),"week");
+    scheduler.load("./events.xml");
+    
+  }
+</script>
+
+<body onload="init();">
+  <div class="col-md-4 col-sm-6 col-xs-8" id="content">
+    <h1>Parengage - Calendar</h1>
     <script src="js/toolbar.js"></script>
-    <iframe src="https://calendar.google.com/calendar/embed?src=college.harvard.edu_bjtipmdf5chk32ee26alt64950%40group.calendar.google.com&ctz=America/New_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-    <div id="results"></div>
-  </body>
-</html>
+  </div>
+    <div id="scheduler_here" class="dhx_cal_container" style='width:65%; height:65%;'>
+      <div class="dhx_cal_navline">
+        <div class="dhx_cal_prev_button">&nbsp;</div>
+        <div class="dhx_cal_next_button">&nbsp;</div>
+        <div class="dhx_cal_today_button"></div>
+        <div class="dhx_cal_date"></div>
+        <div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
+        <div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
+        <div class="dhx_cal_tab" name="month_tab" style="right:76px;"></div>
+      </div>
+      <div class="dhx_cal_header">
+      </div>
+      <div class="dhx_cal_data">
+      </div>
+
+</body>
