@@ -1,16 +1,35 @@
 <html>
   <head>
+    <script>
+      function appendResults(text) {
+        var results = document.getElementById('results');
+        results.appendChild(document.createElement('P'));
+        results.appendChild(document.createTextNode(text));
+      }
+
+      function makeRequest() {
+        var request = gapi.client.urlshortener.url.get({
+          'shortUrl': 'http://goo.gl/fbsS'
+        });
+        request.then(function(response) {
+          appendResults(response.result.longUrl);
+        }, function(reason) {
+          console.log('Error: ' + reason.result.error.message);
+        });
+      }
+
+      function init() {
+        gapi.client.setApiKey('YOUR API KEY');
+        gapi.client.load('urlshortener', 'v1').then(makeRequest);
+      }
+    </script>
+    <script src="https://apis.google.com/js/client.js?onload=init"></script>
     <title>Parengage - Calendar</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/simple-sidebar.css">
   </head>
   <body>
-  	<div class="col-md-4 col-sm-6 col-xs-8" id="content">
-	    <h1>Parengage - Calendar</h1>
-	    <script src="js/toolbar.js"></script>
-	</div>
+   <h1>Parengage - Calendar</h1>
+    <script src="js/toolbar.js"></script>
+    <iframe src="https://calendar.google.com/calendar/embed?src=college.harvard.edu_bjtipmdf5chk32ee26alt64950%40group.calendar.google.com&ctz=America/New_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    <div id="results"></div>
   </body>
-
-
-
 </html>

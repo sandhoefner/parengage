@@ -1,0 +1,169 @@
+{
+	"parent1" : 
+	{
+		"parentData" : 
+		{
+			"parentFName": "Jessica",
+			"parentLName": "Baker"
+		},
+		"studentData" : {
+			"childFName" : "James",
+			"childLName" : "Jones",
+			"studentID" : "010001",
+			"gradeLevel" : 9,
+			"grades" : {}
+		},
+		"totalLogins" : 0, 
+		"weeklyLoginData" : 
+		{
+			"9/5" : 
+			{
+				"sessionsCount" : 2,
+				"pagesVisited" : [{"grades" : 1}, {"calendar" : 2}], 
+				"time" : 340,
+				"emailsSent" : 0, 
+				"forumPosts" : 0,
+				"tasksAccomplished" : 0
+			},
+			"9/12" : 
+			{
+				"sessionsCount" : 5,
+				"pagesVisited" : [{"grades" : 1}, {"calendar" : 2}, {"message" : 1}, {"tasks" : 1}, {"colleges" : 1}], 
+				"time" : 565,
+				"emailsSent" : 1, 
+				"forumPosts" : 2,
+				"tasksAccomplished" : 1
+			},
+			"9/19" : 
+			{
+				"sessionsCount" : 0,
+				"pagesVisited" : [], 
+				"time": 0,
+				"emailsSent" : 0,
+				"forumPosts" : 0,
+				"tasksAccomplished" : 0
+			},
+			"9/26" : 
+			{
+				"sessionsCount" : 0,
+				"pagesVisited" : [], 
+				"time": 0,
+				"emailsSent" : 0,
+				"forumPosts" : 0,
+				"tasksAccomplished" : 0
+			}
+		}
+	},
+	"parent2" : 
+	{
+		"parentData" : 
+		{
+			"parentFName": "Tammarah",
+			"parentLName": "Cintron"
+		},
+		"studentData" : {
+			"childFName" : "Jessica",
+			"childLName" : "Taylor",
+			"studentID" : "010002",
+			"gradeLevel" : 11,
+			"grades" : {}
+		},
+		"totalLogins" : 0, 
+		"weeklyLoginData" : 
+		{
+			"9/5" : 
+			{
+				"sessionsCount" : 2,
+				"pagesVisited" : [{"grades" : 1}, {"calendar" : 2}], 
+				"time" : 221,
+				"emailsSent" : 0, 
+				"forumPosts" : 0,
+				"tasksAccomplished" : 0
+			},
+			"9/12" : 
+			{
+				"sessionsCount" : 1,
+				"pagesVisited" : [{"grades" : 1}], 
+				"time" : 105,
+				"emailsSent" : 1, 
+				"forumPosts" : 0,
+				"tasksAccomplished" : 1
+			},
+			"9/19" : 
+			{
+				"sessionsCount" : 5,
+				"pagesVisited" : [{"grades" : 1}, {"calendar" : 1}, {"message" : 1}, {"tasks" : 1}], 
+				"time": 254,
+				"emailsSent" : 0,
+				"forumPosts" : 0,
+				"tasksAccomplished" : 0
+			},
+			"9/26" : 
+			{
+				"sessionsCount" : 1,
+				"pagesVisited" : [{"grades" : 1}], 
+				"time": 23,
+				"emailsSent" : 0,
+				"forumPosts" : 0,
+				"tasksAccomplished" : 0
+			}
+		}
+	},
+	"parent3" : 
+	{
+		"parentData" : 
+		{
+			"parentFName": "Myra",
+			"parentLName": "Banks"
+		},
+		"studentData" : {
+			"childFName" : "Brenda",
+			"childLName" : "Garcia",
+			"studentID" : "010003",
+			"gradeLevel" : 10,
+			"grades" : {}
+		},
+		"totalLogins" : 0, 
+		"weeklyLoginData" : 
+		{
+			"9/5" : 
+			{
+				"sessionsCount" : 3,
+				"pagesVisited" : [{"grades" : 1}, {"calendar" : 2}, {"message" : 1}], 
+				"time" : 253,
+				"emailsSent" : 0, 
+				"forumPosts" : 0,
+				"tasksAccomplished" : 0
+			},
+			"9/12" : 
+			{
+				"sessionsCount" : 1,
+				"pagesVisited" : [{"grades" : 1}, {"forums" : 2}], 
+				"time" : 105,
+				"emailsSent" : 0, 
+				"forumPosts" : 0,
+				"tasksAccomplished" : 0
+			},
+			"9/19" : 
+			{
+				"sessionsCount" : 7,
+				"pagesVisited" : [{"grades" : 1}, {"calendar" : 1}, {"message" : 1}, {"tasks" : 1}, {"forums" : 2}], 
+				"time": 254,
+				"emailsSent" : 1,
+				"forumPosts" : 0,
+				"tasksAccomplished" : 0
+			},
+			"9/26" : 
+			{
+				"sessionsCount" : 1,
+				"pagesVisited" : [{"grades" : 1}], 
+				"time": 23,
+				"emailsSent" : 0,
+				"forumPosts" : 0,
+				"tasksAccomplished" : 0
+			}
+		}
+	}
+
+
+}

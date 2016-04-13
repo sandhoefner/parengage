@@ -1,0 +1,72 @@
+{
+	"Bernd" : 
+	{
+		"subject" : "Math",
+		"grade" : 50,
+		"detailedGrades" : 
+		{
+			"HW 1" : 44,
+			"HW 2" : 52,
+			"Test" : 51
+		}
+	},
+	"Gajos" : 
+	{
+		"subject" : "English",
+		"grade" : 56,
+		"detailedGrades" :
+		{
+			"Essay 1" : 85,
+			"Worksheet 1" : 23,
+			"Reading Quiz 1" : 44,
+			"Reading Quiz 2" : 37,
+			"Reflection" : 52 
+		}
+	},
+	"King" : 
+	{
+		"subject" : "Science", 
+		"grade" : 88,
+		"detailedGrades" : 
+		{
+			"Lab 1" : 90,
+			"Lab 2" : 88,
+			"Test 1" : 86
+		}
+	},
+	"Shapiro" : 
+	{
+		"subject" : "Basketball",
+		"grade" : 95,
+		"detailedGrades" : 
+		{
+			"Dribbling" : 100,
+			"Rebounding" : 90,
+			"Passing" : 95,
+			"Spirit" : 95,
+			"Sportsmanship" : 95
+		}
+	},
+	"Wang" : 
+	{
+		"subject" : "History",
+		"grade" : 45,
+		"detailedGrades" : 
+		{
+			"Essay 1" : 53,
+			"Essay 2" : 35,
+			"Participation" : 44
+		}
+	},
+	"Sandhoefner" : 
+	{
+		"subject" : "Spanish",
+		"grade" : 24,
+		"detailedGrades" : 
+		{
+			"Quiz 1" : 15,
+			"Quiz 2" : 0,
+			"Homework 1" : 95
+		}
+	}
+}

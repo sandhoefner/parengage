@@ -1,4 +1,4 @@
-// add toolbar to page
+// add toolbar (admin view) to page
 
 var div = document.createElement('div');
 div.className = 'sidebar-wrapper col-md-3 col-sm-3 col-xs-4'
@@ -12,9 +12,9 @@ ul.className = 'sidebar-nav';
 ul.id = 'toolbar_list';
 document.getElementById('toolbar').appendChild(ul);
 
-var toolbar = ['Grades', 'Calendar', 'Message', 'Tasks', 'Colleges', 'Forum', 'My History', 'Help', 'Log Out'];
-var glyphicons = ['book', 'calendar', 'envelope', 'check', 'globe', 'comment', 'tasks', 'question-sign', 'log-out']
-var links = ['index.html', 'calendar.html', 'message.html', 'tasks.html', 'colleges.html', 'forum.html', 'my_history.html', 'help.html', 'login.html'];
+var toolbar = ['Dashboard', 'Calendar', 'Message', 'Tasks', 'Colleges', 'Forum', 'My History', 'Log Out'];
+var glyphicons = ['book', 'calendar', 'envelope', 'check', 'globe', 'comment', 'tasks', 'log-out']
+var links = ['adminDashboard.html', 'calendar.html', 'message.html', 'tasks.html', 'colleges.html', 'forum.html', 'my_history.html', 'login.html'];
 
 for (button in toolbar) {
   var li = document.createElement('li');
@@ -24,5 +24,3 @@ for (button in toolbar) {
 
   document.getElementById('toolbar_list').appendChild(li);
 }
-
-
