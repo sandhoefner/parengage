@@ -16,7 +16,7 @@ var sendreply = function() {
 		message = $(this).parent().children(".message").val();
 		var time = new Date();
 		var responsetime= (time.getMonth()+1) + '/' + time.getDate() + '/' + time.getFullYear() + ' ' + time.getHours() + ':' + time.getMinutes();
-		$(this).parent().replaceWith("<div><br>Username at " + responsetime + ":<br>\"" + message + "\"<br></div>" + replybutton); 
+		$(this).parent().replaceWith("<div><br>Bernd Huber at " + responsetime + ":<br>\"" + message + "\"<br></div>" + replybutton); 
 
 		sendreply();
 	});
