@@ -84,13 +84,23 @@
             for (var i = 0; i < 7; i++) {
                 var tr = tbl.insertRow();
                 tr.id = i;
+                if (i>0) {
                 tr.onclick = function() {
                     detail(this.id)
                 };
                 tr.className = "clickable";
+            }
 
                 for (var j = 0; j < 3; j++) {
+
+
+                	if (i==0) {
+                		//populate headers here
+                		var td = document.createElement("th");
+                		tr.appendChild(td);
+                	} else {
                     var td = tr.insertCell();
+                }
                     if (i > 0) {
 
 
