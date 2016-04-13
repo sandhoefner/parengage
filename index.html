@@ -13,33 +13,6 @@
         <script src="js/jquery-2.2.3.min.js"></script>
         <div id="table_div"></div>
 
-        <!--
-		    <table id="grade_table" class="table .table-striped" style="width:100%">
-			    <tbody>
-			    <tr>
-				    <th>Teacher</th> 
-				    <th>Grade</th>
-				  </tr>
-				  <tr id="Bernd" class="clickable" onclick="detail(this.id)">
-				    <td>Bernd</td> 
-				    <td>50</td>
-				  </tr>
-				  <tr id='Gajos' class="clickable" onclick="detail(this.id)">
-				    <td>Gajos</td> 
-				    <td>94</td>
-				  </tr>
-				  <tr id='King' class="clickable" onclick="detail(this.id)">
-				    <td>King</td> 
-				    <td>88</td>
-				  </tr>
-				  <tr id='Panda' class="clickable" onclick="detail(this.id)">
-				    <td>Panda</td> 
-				    <td>88</td>
-				  </tr>
-				</tbody>
-			</table>
--->
-
     </div>
 </body>
 
@@ -122,7 +95,7 @@
 
             }
 
-            body.appendChild(tbl);
+            document.getElementById("table_div").appendChild(tbl);
         }
         tableCreate();
     });
