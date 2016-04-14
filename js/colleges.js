@@ -1,9 +1,8 @@
 $(document).ready(function(){
-	// Increments up every time a task is created. Would be later be taken from JSON
-	$(".addTask").click(function(){
-		addTaskForm();
-		$(".addTask").hide();
-		$(".completeTask").click(function(){
+	$(".addNotification").click(function(){
+		addCollegeForm();
+		$(".addNotification").hide();
+		$(".completeNotification").click(function(){
 			console.log($(".taskName").val());
 			saveForm();
 		})
@@ -19,15 +18,16 @@ $(document).ready(function(){
 * addTaskForm creates the form DOM elements where admin can add a new task 
 * 
 */
-taskNumber = 2;
-var addTaskForm = function() {
+// Increments up every time a task is created. Would be later be taken from JSON
 
-	html = '<div class="taskInput">';
+taskNumber = 2;
+var addCollegeForm = function() {
+
+	html = '<div class="collegeInput">';
 	html += '<h4>Add New Task</h4>'
-	html += '<input class="form-control taskName" type="text" name="email_subject" placeholder="Task Name"><br>';
-	html += '<input class="form-control taskDate" type="text" id="datepicker" placeholder="Date"><br>'
-	html += '<textarea class="form-control taskDetails" type="text" name="email_body" placeholder="Task Details"></textarea><br>'
-	html += '<button class="btn btn-default completeTask" type="submit" id="send_email">Add Task</button>'
+	html += '<input class="form-control taskName" type="text" name="email_subject" placeholder="Notification Name"><br>';
+	html += '<textarea class="form-control taskDetails" type="text" name="email_body" placeholder="Notification Details"></textarea><br>'
+	html += '<button class="btn btn-default completeNotification" type="submit" id="send_email">Add Task</button>'
     html += '</div>'
     $(".taskWrapper").prepend(html);
 }
@@ -37,21 +37,19 @@ Shoudl be trigged when admin hits "Add Task"*/
 
 var saveForm = function () {
 	taskName = $(".taskName").val();
-	taskDate = $(".taskDate").val();
 	taskDetails = $(".taskDetails").val();
 
 	// Create html and append
 	html = '<div class="task" id="task' + taskNumber + '">';
 	html += '<h3>' + taskName + '</h3>';
-	html += '<h5>' + taskDate + '</h5>';
 	html += '<p>' + taskDetails + '</p>';
 	html += '</div>';
 
 	$(".taskWrapper").prepend(html);
 
 	// Hide the taskInput Form now that you're done and re-add the Add Task Button
-	$(".taskInput").hide();
-	$(".addTask").show();
+	$(".collegeInput").hide();
+	$(".addNotification").show();
 
 	taskNumber += 1;
 }
