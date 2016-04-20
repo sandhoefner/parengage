@@ -28,7 +28,7 @@ var writemessage = function() {
 		teacher = $(this).parent().children(".teacher_select").val();
 		var time = new Date();
 		var responsetime= (time.getMonth()+1) + '/' + time.getDate() + '/' + time.getFullYear() + ' ' + time.getHours() + ':' + time.getMinutes();
-		$(this).parent().replaceWith(messagebutton + "<br></br><a class='btn btn-info btn-xs' href=''>"+responsetime+"</a><br>"+ "<div><br> You writing to " + teacher + " at " + responsetime + ":<br>\"" + message + "\"<br></div>"); 
+		$(this).parent().replaceWith(messagebutton + "<br></br><h4>"+responsetime+"</h4><br>"+ "<div><br> You writing to " + teacher + " at " + responsetime + ":<br>\"" + message + "\"<br></div>"); 
 
 		writemessage();
 	});
