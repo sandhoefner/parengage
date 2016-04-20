@@ -45,6 +45,7 @@ var saveForm = function () {
 	html += '<h3>' + taskName + '</h3>';
 	html += '<h5>' + taskDate + '</h5>';
 	html += '<p>' + taskDetails + '</p>';
+	html += '<p><a class="clickable" onclick="dele(this.parentElement.parentElement);">Delete</a></p>';
 	html += '</div>';
 
 	$(".taskWrapper").prepend(html);
@@ -56,4 +57,6 @@ var saveForm = function () {
 	taskNumber += 1;
 }
 
-
+function dele(elt) {
+	elt.remove();
+}
