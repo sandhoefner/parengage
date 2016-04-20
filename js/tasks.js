@@ -19,14 +19,14 @@ $(document).ready(function(){
 * addTaskForm creates the form DOM elements where admin can add a new task 
 * 
 */
-taskNumber = 2;
+taskNumber = 1;
 var addTaskForm = function() {
 
 	html = '<div class="taskInput">';
 	html += '<h4>Add New Task</h4>'
 	html += '<input class="form-control taskName" type="text" name="email_subject" placeholder="Task Name"><br>';
-	html += '<input class="form-control taskDate" type="text" id="datepicker" placeholder="Date"><br>'
-	html += '<textarea class="form-control taskDetails" type="text" name="email_body" placeholder="Task Details"></textarea><br>'
+	html += '<input class="form-control taskDate" type="text" id="datepicker" placeholder="Description"><br>'
+	html += '<textarea class="form-control taskDetails" type="text" name="email_body" placeholder="Checklist (press Enter between items)"></textarea><br>'
 	html += '<button class="btn btn-info completeTask" type="submit" id="send_email">Add Task</button>'
     html += '</div>'
     $(".taskWrapper").prepend(html);
@@ -44,8 +44,16 @@ var saveForm = function () {
 	html = '<div class="task" id="task' + taskNumber + '">';
 	html += '<h3>' + taskName + '</h3>';
 	html += '<h5>' + taskDate + '</h5>';
-	html += '<p>' + taskDetails + '</p>';
+	var split = taskDetails.split('\n');
+	html += "<div class='checkbox'>";
+	for (i = 0; i < split.length; i++) {
+		html += '<input type="checkbox">' + split[i] + '</input><br>';
+	}
+	html += "</div>";
+	html += '<p><a class="clickable" onclick="dele(this.parentElement.parentElement);">Delete</a></p>';
 	html += '</div>';
+
+	console.log(html);
 
 	$(".taskWrapper").prepend(html);
 
@@ -56,4 +64,25 @@ var saveForm = function () {
 	taskNumber += 1;
 }
 
+function init(name, body, list) {
+	// Create html and append
+	html = '<div class="task" id="task' + taskNumber + '">';
+	html += '<h3>' + name + '</h3>';
+	html += '<h5>' + body + '</h5>';
+	html += "<div class='checkbox'>";
+	for (i = 0; i < list.length; i++) {
+		html += '<input type="checkbox">' + list[i] + '</input><br>';
+	}
+	html += "</div>";
+	html += '<p><a class="clickable" onclick="dele(this.parentElement.parentElement);">Delete</a></p>';
+	html += '</div>';
+	document.getElementById("taskWrapper").innerHTML += html;
+
+	taskNumber += 1;
+}
+
+function dele(elt) {
+	taskNumber -= 1;
+	elt.remove();
+}
 
