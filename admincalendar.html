@@ -86,6 +86,8 @@
   }
 
   function saveevents() {
-    localStorage["events"] = JSON.stringify(events, ['id', 'start_date', 'end_date', 'text', 'details']);
+    var evs = scheduler.getEvents();
+    console.log(evs);
+    localStorage["events"] = JSON.stringify(evs, ['id', 'start_date', 'end_date', 'text', 'details']);
   }
 </script>
