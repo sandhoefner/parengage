@@ -2,7 +2,7 @@
 
 var message = "";
 var teacher = "";
-var messagebutton = " <button class='btn btn-default btn-m newmessage'>New Message</button><br>";
+var messagebutton = " <button class='btn btn-info btn-m newmessage'>New Message</button><br>";
 
 $(document).ready(function() {
 	writemessage();
@@ -20,7 +20,7 @@ var writemessage = function() {
         <br>\
         <textarea class='form-control newmessagetext' type='text' name='email_body' placeholder='Message'></textarea>\
         <br>\
-        <button class='btn btn-default writemessage' type='submit' id='send_email'>Send</button></div>"); 
+        <button class='btn btn-info writemessage' type='submit' id='send_email'>Send</button></div>"); 
 
 
 	$(".writemessage").click(function() {
@@ -28,7 +28,7 @@ var writemessage = function() {
 		teacher = $(this).parent().children(".teacher_select").val();
 		var time = new Date();
 		var responsetime= (time.getMonth()+1) + '/' + time.getDate() + '/' + time.getFullYear() + ' ' + time.getHours() + ':' + time.getMinutes();
-		$(this).parent().replaceWith(messagebutton + "<br></br><a class='btn btn-info btn-xs' href=''>"+responsetime+"</a><br>"+ "<div><br> You writing to " + teacher + " at " + responsetime + ":<br>\"" + message + "\"<br></div>"); 
+		$(this).parent().replaceWith(messagebutton + "<br></br><h4>"+responsetime+"</h4><br>"+ "<div><br> You writing to " + teacher + " at " + responsetime + ":<br>\"" + message + "\"<br></div>"); 
 
 		writemessage();
 	});

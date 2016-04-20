@@ -1,0 +1,17 @@
+{
+	"parents" : [
+		{
+			"username" : "jbaker",
+			"password" : "password",
+			"firstName" : "Jontavia",
+			"lastName" : "Baker"
+		}
+	],
+
+	"admin" : [
+		{
+			"username" : "admin",
+			"password" : "admin"
+		}
+	]
+}

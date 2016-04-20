@@ -27,7 +27,7 @@ var addTaskForm = function() {
 	html += '<input class="form-control taskName" type="text" name="email_subject" placeholder="Task Name"><br>';
 	html += '<input class="form-control taskDate" type="text" id="datepicker" placeholder="Date"><br>'
 	html += '<textarea class="form-control taskDetails" type="text" name="email_body" placeholder="Task Details"></textarea><br>'
-	html += '<button class="btn btn-default completeTask" type="submit" id="send_email">Add Task</button>'
+	html += '<button class="btn btn-info completeTask" type="submit" id="send_email">Add Task</button>'
     html += '</div>'
     $(".taskWrapper").prepend(html);
 }
