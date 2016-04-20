@@ -19,7 +19,7 @@ $(document).ready(function(){
 * addTaskForm creates the form DOM elements where admin can add a new task 
 * 
 */
-taskNumber = 2;
+taskNumber = 1;
 var addTaskForm = function() {
 
 	html = '<div class="taskInput">';
@@ -45,13 +45,15 @@ var saveForm = function () {
 	html += '<h3>' + taskName + '</h3>';
 	html += '<h5>' + taskDate + '</h5>';
 	var split = taskDetails.split('\n');
-	html += "<p>";
+	html += "<div class='checkbox'>";
 	for (i = 0; i < split.length; i++) {
 		html += '<input type="checkbox">' + split[i] + '</input><br>';
 	}
-	html += "</p>";
+	html += "</div>";
 	html += '<p><a class="clickable" onclick="dele(this.parentElement.parentElement);">Delete</a></p>';
 	html += '</div>';
+
+	console.log(html);
 
 	$(".taskWrapper").prepend(html);
 
@@ -62,6 +64,26 @@ var saveForm = function () {
 	taskNumber += 1;
 }
 
+function init(name, body, list) {
+	// Create html and append
+	html = '<div class="task" id="task' + taskNumber + '">';
+	html += '<h3>' + name + '</h3>';
+	html += '<h5>' + body + '</h5>';
+	html += "<div class='checkbox'>";
+	for (i = 0; i < list.length; i++) {
+		html += '<input type="checkbox">' + list[i] + '</input><br>';
+	}
+	html += "</div>";
+	html += '<p><a class="clickable" onclick="dele(this.parentElement.parentElement);">Delete</a></p>';
+	html += '</div>';
+	console.log(html);
+K	console.log(document.getElementById("taskWrapper"));
+	document.getElementById("taskWrapper").innerHTML += html;
+
+	taskNumber += 1;
+}
+
 function dele(elt) {
 	elt.remove();
 }
+
