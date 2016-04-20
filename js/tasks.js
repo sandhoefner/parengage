@@ -76,8 +76,6 @@ function init(name, body, list) {
 	html += "</div>";
 	html += '<p><a class="clickable" onclick="dele(this.parentElement.parentElement);">Delete</a></p>';
 	html += '</div>';
-	console.log(html);
-	console.log(document.getElementById("taskWrapper"));
 	document.getElementById("taskWrapper").innerHTML += html;
 
 	taskNumber += 1;
