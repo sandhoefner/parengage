@@ -7,9 +7,10 @@
   <body>
   <script src="js/toolbar.js"></script>
     <div class="col-md-4 col-sm-6 col-xs-8" id="content">
-    sdf
-     <!--  <h1>Parengage - Tasks</h1>
-      
+    
+       <h1>Parengage - Tasks</h1>
+       <div id="taskWrapper"></div>
+    <!--  
       If you have a moment, please call a few of these parents and ask them to volunteer for the bake sale! If you do call anyone, please check their box and press "submit" so we don't call them again.<br>
       <div class="checkbox">
         <input type="checkbox">Pam Davis: 555-555-5555</input><br>
@@ -38,6 +39,49 @@
         </div>
       <button class="btn btn-info" type="submit">Submit</button> -->
    </div>
+
+   <script>
+
+   var taskNumber = 1;
+
+function init(name, body, list) {
+  // Create html and append
+  html = '<div class="task" id="task' + taskNumber + '">';
+  html += '<h3>' + name + '</h3>';
+  html += '<h5>' + body + '</h5>';
+  html += "<div class='checkbox'>";
+  for (i = 0; i < list.length; i++) {
+    html += '<span><input type="checkbox" class="checkbox_actual">' + list[i] + '</input><br></span>';
+  }
+
+  html += "</div>";
+
+  html += '</div>';
+  // just one submit button for page!!
+        html += "<button id='submit' class='btn btn-info' type='submit' onclick='submit();'>Submit</button>";
+
+  document.getElementById("taskWrapper").innerHTML += html;
+
+  taskNumber += 1;
+}
+
+function submit() {
+  var boxes = document.getElementsByClassName("checkbox_actual");
+  var length = boxes.length;
+  for (i = 0; i < length; i++) {
+    if (boxes[i].checked) {
+      boxes[i].parentElement.remove();
+      i--;
+      length--;
+    }
+  }
+}
+
+init("Bake Sale!", "If you have a moment, please call a few of these parents and ask them to volunteer for the bake sale! If you do call anyone, please check their box and press 'submit' so we don't call them again.", ["Pam Davis: 555-555-5555", "Jim Clooney: 555-555-5555", "Martha Kim: 555-555-5555", "Lily Kerr: 555-555-5555"]);
+
+   </script>
+
+
   </body>
 
 

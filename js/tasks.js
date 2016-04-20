@@ -25,7 +25,7 @@ var addTaskForm = function() {
 	html = '<div class="taskInput">';
 	html += '<h4>Add New Task</h4>'
 	html += '<input class="form-control taskName" type="text" name="email_subject" placeholder="Task Name"><br>';
-	html += '<input class="form-control taskDate" type="text" id="datepicker" placeholder="Date"><br>'
+	html += '<input class="form-control taskDate" type="text" id="datepicker" placeholder="Description"><br>'
 	html += '<textarea class="form-control taskDetails" type="text" name="email_body" placeholder="Checklist (press Enter between items)"></textarea><br>'
 	html += '<button class="btn btn-info completeTask" type="submit" id="send_email">Add Task</button>'
     html += '</div>'
@@ -82,6 +82,7 @@ function init(name, body, list) {
 }
 
 function dele(elt) {
+	taskNumber -= 1;
 	elt.remove();
 }
 
