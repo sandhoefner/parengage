@@ -2,7 +2,7 @@
 
 var message = "";
 var teacher = "";
-var messagebutton = " <button class='btn btn-default btn-m newmessage'>New Message</button><br>";
+var messagebutton = " <button class='btn btn-info btn-m newmessage'>New Message</button><br>";
 
 $(document).ready(function() {
 	writemessage();
@@ -20,7 +20,7 @@ var writemessage = function() {
         <br>\
         <textarea class='form-control newmessagetext' type='text' name='email_body' placeholder='Message'></textarea>\
         <br>\
-        <button class='btn btn-default writemessage' type='submit' id='send_email'>Send</button></div>"); 
+        <button class='btn btn-info writemessage' type='submit' id='send_email'>Send</button></div>"); 
 
 
 	$(".writemessage").click(function() {

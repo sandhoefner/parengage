@@ -1,7 +1,7 @@
 //reply to post
 
 var message = "";
-var replybutton = "<br><button class='btn btn-default btn-xs reply'>Reply</button>";
+var replybutton = "<br><button class='btn btn-info btn-xs reply'>Reply</button>";
 
 $(document).ready(function() {
 	sendreply();
@@ -9,7 +9,7 @@ $(document).ready(function() {
 
 var sendreply = function() {
 	$(".reply").click(function() {
-		$(this).replaceWith("<div><textarea class='form-control message' type='text' name='email_body' placeholder='Message'></textarea><br><button class='btn btn-default btn-xs sendreply' type='submit'>Send Reply</button></div>"); 
+		$(this).replaceWith("<div><textarea class='form-control message' type='text' name='email_body' placeholder='Message'></textarea><br><button class='btn btn-info btn-xs sendreply' type='submit'>Send Reply</button></div>"); 
 
 
 	$(".sendreply").click(function() {
