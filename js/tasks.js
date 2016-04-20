@@ -4,7 +4,6 @@ $(document).ready(function(){
 		addTaskForm();
 		$(".addTask").hide();
 		$(".completeTask").click(function(){
-			console.log($(".taskName").val());
 			saveForm();
 		})
 	})
@@ -53,7 +52,6 @@ var saveForm = function () {
 	html += '<p><a class="clickable" onclick="dele(this.parentElement.parentElement);">Delete</a></p>';
 	html += '</div>';
 
-	console.log(html);
 
 	$(".taskWrapper").prepend(html);
 
