@@ -1,9 +1,10 @@
 <!doctype html>
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <title>Basic initialization</title>
+  <title>Parengage - Calendar</title>
 </head>
   <script src="calendarJS/codebase/dhtmlxscheduler.js" type="text/javascript" charset="utf-8"></script>
+  <script src='calendarJS/codebase/ext/dhtmlxscheduler_serialize.js'></script>
   <link rel="stylesheet" href="calendarJS/codebase/dhtmlxscheduler.css" type="text/css" media="screen" title="no title" charset="utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" href="css/simple-sidebar.css">
@@ -20,10 +21,42 @@
 
 <script type="text/javascript" charset="utf-8">
   function init() {
+    if (!localStorage["events"]) {
+        events = [{id:'1', start_date:'2016-10-19 07:00', end_date:'2016-10-21 07:00', text:'Parent Teacher Meetings', details:'Arrange individual times with teacher.' },
+        {id:'2', start_date:'2016-10-19 18:00', end_date:'2016-10-19 20:00', text:'Back to School Night', details:'Begins in school cafeteria'},
+        {id:'3', start_date:'2016-10-22 18:00', end_date:'2016-10-22 21:00', text:'Football: Home vs. Reagan HS', details:'Nelson Field',},
+        {id:'4', start_date:'2016-10-15 18:00', end_date:'2016-10-15 21:00', text:'Football: Away vs. Austin HS', details:'House Park'},
+        {id:'5', start_date:'2016-10-28 16:00', end_date:'2016-10-28 19:00', text:'Football: Home vs. McCallum HS', details:'Nelson Field'},
+        {id:'6', start_date:'2016-10-08 16:00', end_date:'2016-10-08 19:00', text:'Football: Home vs. Bowie HS', details:'Nelson Field'},
+        {id:'7', start_date:'2016-09-30 16:00', end_date:'2016-09-30 19:00', text:'Football: Away vs. Hutto HS', details:'Burger Stadium'},
+        {id:'8', start_date:'2016-10-05 16:00', end_date:'2016-10-05 19:00', text:'Volleyball: Away vs. Hutto HS', details:'Delco Athletic Center'},
+        {id:'9', start_date:'2016-10-13 16:00', end_date:'2016-10-13 19:00', text:'Volleyball: Home vs. Austin HS', details:'Delco Athletic Center'},
+        {id:'10', start_date:'2016-10-18 16:00', end_date:'2016-10-18 19:00', text:'Volleyball: Home vs. Reagan HS', details:'Delco Athletic Center'},
+        {id:'11', start_date:'2016-10-26 16:00', end_date:'2016-10-26 19:00', text:'Volleyball: Away vs. McCallum HS', details:'Delco Athletic Center'},
+        {id:'12', start_date:'2016-10-29 16:00', end_date:'2016-10-30 19:00', text:'College Visit: UT', details:'Sign up in counselor office'},
+        {id:'13', start_date:'2016-10-14 16:00', end_date:'2016-10-14 19:00', text:'College Application Process', details:'Sign up in counselor office'},
+        {id:'14', start_date:'2016-11-05 16:00', end_date:'2016-11-05 19:00', text:'Football: Away vs. Anderson HS', details:'Burger Stadium'}];
+    // returning user
+    } else {
+        events = JSON.parse(localStorage["events"], dateReviver);
+        function dateReviver(key, value) {
+            var a;
+            if (typeof value === 'string') {
+                a = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*)?)Z$/.exec(value);
+                if (a) {
+                    return new Date(Date.UTC(+a[1], +a[2] - 1, +a[3], +a[4],
+                                    +a[5], +a[6]));
+                }
+            }
+            return value;
+        };
+    }
+
     scheduler.config.xml_date="%Y-%m-%d %H:%i";
-    scheduler.config.readonly = true;
-    scheduler.init('scheduler_here',new Date(2016,3,13),"week");
-    scheduler.load("./events.xml");
+    scheduler.config.readonly = false;
+    scheduler.config.now_date = new Date(2016, 9, 13);
+    scheduler.init('scheduler_here',new Date(2016,9,13),"month");
+    scheduler.parse(events,"json");
     
   }
 </script>
@@ -47,5 +80,4 @@
       </div>
       <div class="dhx_cal_data">
       </div>
-
 </body>

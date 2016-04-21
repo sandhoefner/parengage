@@ -3,15 +3,28 @@
     <title>Parengage - Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="css/simple-sidebar.css">
+    <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
     <div class="col-md-4 col-sm-6 col-xs-8" id="content">
       <h1>Parengage - Login</h1>
-      <input class="form-control" type="text" name="username" placeholder="Username">
+      <script src="js/toolbar.js"></script>
+      <script src="js/jquery-2.2.3.min.js"></script>
+      <script src="js/login.js"></script>
+      <input class="form-control username" type="text" name="username" placeholder="Username">
       <br>
-      <input class="form-control" type="password" name="password" placeholder="Password">
+      <input class="form-control password" type="password" name="password" placeholder="Password">
       <br>
-      <a class="btn btn-info" id="login_button" href="index.html">Log In</a>
+      <div class="radioDiv">
+          <label class="radio-inline">
+            <input type="radio" class="radioButton" name="inlineRadioOptions" id="inlineRadio1" value="parent"> Parent
+          </label>
+          <label class="radio-inline">
+            <input type="radio" class ="radioButton" name="inlineRadioOptions" id="inlineRadio2" value="admin"> Admin
+          </label>
+      </div>
+      <br>
+      <button class="btn btn-info" id="loginButton">Log In</button>
     </div>
   </body>
 
