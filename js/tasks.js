@@ -1,3 +1,8 @@
+
+//
+// creating a new task with the same name as an existing task will corrupt the existing one in memory
+//
+
 $(document).ready(function(){
 	// document.onload = function() {
 	// Increments up every time a task is created. Would be later be taken from JSON
@@ -30,6 +35,7 @@ var addTaskForm = function() {
 	html += '<button class="btn btn-info completeTask" type="submit" id="send_email">Add Task</button>'
     html += '</div>'
     $(".taskWrapper").prepend(html);
+
 }
 
 /* saveForm grabs the values of the form created from addTaskForm
@@ -52,6 +58,14 @@ var saveForm = function () {
 	html += "</div>";
 	html += '<p><a class="clickable" onclick="dele(this.parentElement.parentElement);">Delete</a></p>';
 	html += '</div>';
+
+
+	keys.push(taskName);
+	localStorage.keys = JSON.stringify(keys);
+	split.unshift(taskDate);
+	localStorage[taskName] = JSON.stringify(split);
+	// console.log(split);
+	// console.log(keys);
 
 
 	$(".taskWrapper").prepend(html);
@@ -79,39 +93,37 @@ var init = function(name, body, list) {
 	// var total_html = (html + document.getElementById("taskWrapper").innerHTML) || html;
 	// document.getElementById("taskWrapper").innerHTML += html;
 	// document.getElementById("taskWrapper").innerHTML = total_html;
-$(".taskWrapper").append(html);
+$(".taskWrapper").prepend(html);
 	taskNumber += 1;
 }
-var dele = function(elt) {
-	taskNumber -= 1;
 
-	                // localStorage["tasks"] = JSON.stringify(tasks);
-for (var i = 0; i < keys.length; i++) {
-            if (notes[i] == elt.id) {
-                notes.splice(i, 1);
-                localStorage["keys"] = JSON.stringify(keys);
-                break;
-            }
-        }
-        // localStorage.keys = keys;
-	elt.remove();
-}
+
 
 // first time user
 if (!localStorage["returning_user"]) {
+localStorage.returning_user = "1";
+// console.log("new user");
+	keys = ["Bake Sale!"];
 localStorage.keys = JSON.stringify(["Bake Sale!"]);
 localStorage["Bake Sale!"] = JSON.stringify(["If you have a moment, please call a few of these parents and ask them to volunteer for the bake sale! If you do call anyone, please check their box and press 'submit' so we don't call them again.", "Pam Davis: 555-555-5555", "Jim Clooney: 555-555-5555", "Martha Kim: 555-555-5555", "Lily Kerr: 555-555-5555"]);
 init("Bake Sale!", "If you have a moment, please call a few of these parents and ask them to volunteer for the bake sale! If you do call anyone, please check their box and press 'submit' so we don't call them again.", ["Pam Davis: 555-555-5555", "Jim Clooney: 555-555-5555", "Martha Kim: 555-555-5555", "Lily Kerr: 555-555-5555"]);
 } else {
 // returning user
-localStorage.returning_user = "1";
+// console.log("returning user");
 keys = JSON.parse(localStorage.keys);
-for (i=0;i<keys.length;i++) {
-	var key = keys[i];
+// console.log(keys);
+
+for (var j=0;j<keys.length;j++) {
+	var key = keys[j];
+	// console.log(keys);
 	var array = JSON.parse(localStorage[key]);
 	var desc = array[0];
 	array.shift();
+	// console.log("key: " + key);
+	// console.log("desc: " + desc);
+	// console.log("array: " + array);
 	init(key, desc,  array);
+	// console.log(keys.length);
 }
 }
 
@@ -126,3 +138,19 @@ for (i=0;i<keys.length;i++) {
 // tasks = JSON.parse(localStorage["tasks"]);
 // }
 });
+
+function dele (elt) {
+	taskNumber -= 1;
+
+	                // localStorage["tasks"] = JSON.stringify(tasks);
+for (var i = 0; i < keys.length; i++) {
+            if (keys[i] == elt.id) {
+                keys.splice(i, 1);
+                localStorage["keys"] = JSON.stringify(keys);
+                // console.log(keys);
+                break;
+            }
+        }
+        // localStorage.keys = keys;
+	elt.remove();
+}
