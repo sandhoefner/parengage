@@ -1,19 +1,21 @@
 <html>
-  <head>
+
+<head>
     <title>Parengage - Tasks</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="css/simple-sidebar.css">
-  </head>
-  <body>
-  <script src="js/toolbar.js"></script>
-      <script src="js/jquery-2.2.3.min.js"></script>
+</head>
+
+<body>
+    <script src="js/toolbar.js"></script>
+    <script src="js/jquery-2.2.3.min.js"></script>
 
     <div class="col-md-4 col-sm-6 col-xs-8" id="content">
-    
-       <h1>Parengage - Tasks</h1>
-       <div class="taskWrapper" id="taskWrapper"><button id='submit' class='btn btn-info' type='submit' onclick='submit();'>Submit</button></div>
 
-    <!--  
+        <h1>Parengage - Tasks</h1>
+        <div class="taskWrapper" id="taskWrapper"><button id='submit' class='btn btn-info' type='submit' onclick='submit();'>Submit</button></div>
+
+        <!--  
       If you have a moment, please call a few of these parents and ask them to volunteer for the bake sale! If you do call anyone, please check their box and press "submit" so we don't call them again.<br>
       <div class="checkbox">
         <input type="checkbox">Pam Davis: 555-555-5555</input><br>
@@ -41,139 +43,139 @@
           <input type="checkbox">Coat's n Things at coatsnthings@gmail.com</input><br>
         </div>
       <button class="btn btn-info" type="submit">Submit</button> -->
-   </div>
+    </div>
 
-   <script>
-$(document).ready(function(){
-   var taskNumber = 1;
+    <script>
+        $(document).ready(function() {
+            var taskNumber = 1;
 
-// function init(name, body, list) {
-//   // Create html and append
-//   html = '<div class="task" id="' + name + '">';
-//   html += '<h3>' + name + '</h3>';
-//   html += '<h5>' + body + '</h5>';
-//   html += "<div class='checkbox'>";
-//   for (i = 0; i < list.length; i++) {
-//     html += '<span><input type="checkbox" class="checkbox_actual">' + list[i] + '</input><br></span>';
-//   }
+            // function init(name, body, list) {
+            //   // Create html and append
+            //   html = '<div class="task" id="' + name + '">';
+            //   html += '<h3>' + name + '</h3>';
+            //   html += '<h5>' + body + '</h5>';
+            //   html += "<div class='checkbox'>";
+            //   for (i = 0; i < list.length; i++) {
+            //     html += '<span><input type="checkbox" class="checkbox_actual">' + list[i] + '</input><br></span>';
+            //   }
 
-//   html += "</div>";
+            //   html += "</div>";
 
-//   html += '</div>';
-//   // just one submit button for page!!
-//         html += "<button id='submit' class='btn btn-info' type='submit' onclick='submit();'>Submit</button>";
+            //   html += '</div>';
+            //   // just one submit button for page!!
+            //         html += "<button id='submit' class='btn btn-info' type='submit' onclick='submit();'>Submit</button>";
 
-// $(".taskWrapper").prepend(html);
+            // $(".taskWrapper").prepend(html);
 
-//   taskNumber += 1;
-// }
-
-
-
-var init = function(name, body, list) {
-  // Create html and append
-  html = '<div class="task" id="' + name + '">';
-  html += '<h3>' + name + '</h3>';
-  html += '<h5>' + body + '</h5>';
-  html += "<div class='checkbox'>";
-  for (i = 0; i < list.length; i++) {
-    //
-    // these IDs may not be unique
-    //
-    html += '<span><input type="checkbox" class="checkbox_actual" id="' + list[i] + '">' + list[i] + '</input><br></span>';
-  }
-  html += "</div>";
-  // html += '<p><a class="clickable" onclick="dele(this.parentElement.parentElement);">Delete</a></p>';
-  html += '</div>';
-
-  // var total_html = (html + document.getElementById("taskWrapper").innerHTML) || html;
-  // document.getElementById("taskWrapper").innerHTML += html;
-  // document.getElementById("taskWrapper").innerHTML = total_html;
-$(".taskWrapper").prepend(html);
-// console.log(html);
-  taskNumber += 1;
-}
+            //   taskNumber += 1;
+            // }
 
 
 
+            var init = function(name, body, list) {
+                // Create html and append
+                html = '<div class="task" id="' + name + '">';
+                html += '<h3>' + name + '</h3>';
+                html += '<h5>' + body + '</h5>';
+                html += "<div class='checkbox'>";
+                for (i = 0; i < list.length; i++) {
+                    //
+                    // these IDs may not be unique
+                    //
+                    html += '<span><input type="checkbox" class="checkbox_actual" id="' + list[i] + '">' + list[i] + '</input><br></span>';
+                }
+                html += "</div>";
+                // html += '<p><a class="clickable" onclick="dele(this.parentElement.parentElement);">Delete</a></p>';
+                html += '</div>';
 
-// first time user
-if (!localStorage["returning_user"]) {
-localStorage.returning_user = "1";
-console.log("new user");
-  keys = ["Bake Sale!"];
-localStorage.keys = JSON.stringify(["Bake Sale!"]);
-localStorage["Bake Sale!"] = JSON.stringify(["If you have a moment, please call a few of these parents and ask them to volunteer for the bake sale! If you do call anyone, please check their box and press 'submit' so we don't call them again.", "Pam Davis: 555-555-5555", "Jim Clooney: 555-555-5555", "Martha Kim: 555-555-5555", "Lily Kerr: 555-555-5555"]);
-init("Bake Sale!", "If you have a moment, please call a few of these parents and ask them to volunteer for the bake sale! If you do call anyone, please check their box and press 'submit' so we don't call them again.", ["Pam Davis: 555-555-5555", "Jim Clooney: 555-555-5555", "Martha Kim: 555-555-5555", "Lily Kerr: 555-555-5555"]);
-} else {
-// returning user
-console.log("returning user");
-keys = JSON.parse(localStorage.keys);
-// console.log(keys);
-
-for (var j=0;j<keys.length;j++) {
-  var key = keys[j];
-  // console.log(keys);
-  var array = JSON.parse(localStorage[key]);
-  var desc = array[0];
-  array.shift();
-  // console.log("key: " + key);
-  // console.log("desc: " + desc);
-  // console.log("array: " + array);
-  init(key, desc,  array);
-  // console.log("init");
-  // console.log(keys.length);
-}
-}
+                // var total_html = (html + document.getElementById("taskWrapper").innerHTML) || html;
+                // document.getElementById("taskWrapper").innerHTML += html;
+                // document.getElementById("taskWrapper").innerHTML = total_html;
+                $(".taskWrapper").prepend(html);
+                // console.log(html);
+                taskNumber += 1;
+            }
 
 
 
-// init("Bake Sale!", "If you have a moment, please call a few of these parents and ask them to volunteer for the bake sale! If you do call anyone, please check their box and press 'submit' so we don't call them again.", ["Pam Davis: 555-555-5555", "Jim Clooney: 555-555-5555", "Martha Kim: 555-555-5555", "Lily Kerr: 555-555-5555"]);
-});
 
-function submit() {
-  // console.log("submit");
-
-
-// var selected = $('input[name=thename]:checked');
-// console.log(selected);
-
-
-  var boxes = document.getElementsByClassName("checkbox_actual");
-  var length = boxes.length;
-  for (var d = 0; d < length; d++) {
-    if (boxes[d].checked) {
-
-
-
-      var key = boxes[d].parentElement.parentElement.parentElement.id;
-      var box = boxes[d].id;
-      var temp = JSON.parse(localStorage[key]);
-      console.log(temp);
-
-
-      for (var x = 0; x < temp.length; x++) {
-            if (temp[x] == box) {
-                temp.splice(x, 1);
-                console.log(temp);
-                localStorage[key] = JSON.stringify(temp);
+            // first time user
+            if (!localStorage["returning_user"]) {
+                localStorage.returning_user = "1";
+                console.log("new user");
+                keys = ["Bake Sale!"];
+                localStorage.keys = JSON.stringify(["Bake Sale!"]);
+                localStorage["Bake Sale!"] = JSON.stringify(["If you have a moment, please call a few of these parents and ask them to volunteer for the bake sale! If you do call anyone, please check their box and press 'submit' so we don't call them again.", "Pam Davis: 555-555-5555", "Jim Clooney: 555-555-5555", "Martha Kim: 555-555-5555", "Lily Kerr: 555-555-5555"]);
+                init("Bake Sale!", "If you have a moment, please call a few of these parents and ask them to volunteer for the bake sale! If you do call anyone, please check their box and press 'submit' so we don't call them again.", ["Pam Davis: 555-555-5555", "Jim Clooney: 555-555-5555", "Martha Kim: 555-555-5555", "Lily Kerr: 555-555-5555"]);
+            } else {
+                // returning user
+                console.log("returning user");
+                keys = JSON.parse(localStorage.keys);
                 // console.log(keys);
-                break;
+
+                for (var j = 0; j < keys.length; j++) {
+                    var key = keys[j];
+                    // console.log(keys);
+                    var array = JSON.parse(localStorage[key]);
+                    var desc = array[0];
+                    array.shift();
+                    // console.log("key: " + key);
+                    // console.log("desc: " + desc);
+                    // console.log("array: " + array);
+                    init(key, desc, array);
+                    // console.log("init");
+                    // console.log(keys.length);
+                }
+            }
+
+
+
+            // init("Bake Sale!", "If you have a moment, please call a few of these parents and ask them to volunteer for the bake sale! If you do call anyone, please check their box and press 'submit' so we don't call them again.", ["Pam Davis: 555-555-5555", "Jim Clooney: 555-555-5555", "Martha Kim: 555-555-5555", "Lily Kerr: 555-555-5555"]);
+        });
+
+        function submit() {
+            // console.log("submit");
+
+
+            // var selected = $('input[name=thename]:checked');
+            // console.log(selected);
+
+
+            var boxes = document.getElementsByClassName("checkbox_actual");
+            var length = boxes.length;
+            for (var d = 0; d < length; d++) {
+                if (boxes[d].checked) {
+
+
+
+                    var key = boxes[d].parentElement.parentElement.parentElement.id;
+                    var box = boxes[d].id;
+                    var temp = JSON.parse(localStorage[key]);
+                    // console.log(temp);
+
+
+                    for (var x = 0; x < temp.length; x++) {
+                        if (temp[x] == box) {
+                            temp.splice(x, 1);
+                            // console.log(temp);
+                            localStorage[key] = JSON.stringify(temp);
+                            // console.log(keys);
+                            break;
+                        }
+                    }
+
+
+                    boxes[d].parentElement.remove();
+                    // console.log("removing one");
+                    d--;
+                    length--;
+                }
             }
         }
+    </script>
 
 
-      boxes[d].parentElement.remove();
-      console.log("removing one");
-      d--;
-      length--;
-    }
-  }
-}
-   </script>
-
-
-  </body>
+</body>
 
 
 
