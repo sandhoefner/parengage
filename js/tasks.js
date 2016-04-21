@@ -1,6 +1,12 @@
 
 //
 // creating a new task with the same name as an existing task will corrupt the existing one in memory
+// non-unique checkbox IDs
+// finishing last checkbox on task should delete it or put "finished!"
+// select all
+// edit fields
+// debug
+// etc
 //
 
 $(document).ready(function(){
