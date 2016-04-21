@@ -106,14 +106,14 @@ $(document).ready(function() {
     // first time user
     if (!localStorage["returning_user"]) {
         localStorage.returning_user = "1";
-        // console.log("new user");
+        console.log("new user");
         keys = ["Bake Sale!"];
         localStorage.keys = JSON.stringify(["Bake Sale!"]);
         localStorage["Bake Sale!"] = JSON.stringify(["If you have a moment, please call a few of these parents and ask them to volunteer for the bake sale! If you do call anyone, please check their box and press 'submit' so we don't call them again.", "Pam Davis: 555-555-5555", "Jim Clooney: 555-555-5555", "Martha Kim: 555-555-5555", "Lily Kerr: 555-555-5555"]);
         init("Bake Sale!", "If you have a moment, please call a few of these parents and ask them to volunteer for the bake sale! If you do call anyone, please check their box and press 'submit' so we don't call them again.", ["Pam Davis: 555-555-5555", "Jim Clooney: 555-555-5555", "Martha Kim: 555-555-5555", "Lily Kerr: 555-555-5555"]);
     } else {
         // returning user
-        // console.log("returning user");
+        console.log("returning user");
         keys = JSON.parse(localStorage.keys);
         // console.log(keys);
 
