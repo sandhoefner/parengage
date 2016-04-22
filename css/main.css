@@ -7,3 +7,29 @@
 	margin: auto;
 	text-align: center;
 }
+
+th {
+	text-align: center;
+}
+
+td {
+	text-align: center;
+	text-decoration: underline;
+}
+
+.tableHeader {
+	background-color: #D9EDF7;
+}
+
+.tableRow3, .tableRow4 {
+	background-color: #dff0d8;
+}
+
+.tableRow1, .tableRow2, .tableRow5, .tableRow6 {
+	background-color: #F2DEDE;
+}
+
+.message {
+	border-bottom: 1px solid gray;
+	padding: 5px;
+}

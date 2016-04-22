@@ -22,4 +22,3 @@ for (class_info in classes) {
 $.getJSON("../data.json", function(data){
 	console.log(data);
 })
->>>>>>> bdb1f71f785e8d29ade46998cb9f752e08a9099a
