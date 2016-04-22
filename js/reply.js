@@ -59,6 +59,7 @@ $(document).ready(function() {
 });
 
 var sendreply = function() {
+	
 	$(".newdiscussion").click(function() 
 	{
  		$(this).replaceWith("<div><textarea class='form-control message' type='text' name='email_body' placeholder='Message'></textarea><br><button class='btn btn-info btn-xs sendmessage' type='submit'>Start Discussion</button></div>"); 
@@ -78,7 +79,7 @@ var sendreply = function() {
 
 			$(this).parent().replaceWith(newdiscussbutton + replace); 
 
-			sendreply();
+			//sendreply();
 	 	});
 
  	});
@@ -114,7 +115,7 @@ var sendreply = function() {
 
 			$(this).parent().replaceWith(replace  + replybutton); 
 
-			sendreply();
+			//sendreply();
 		});
 
 
