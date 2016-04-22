@@ -5,6 +5,7 @@
 </head>
   <script src="calendarJS/codebase/dhtmlxscheduler.js" type="text/javascript" charset="utf-8"></script>
   <script src='calendarJS/codebase/ext/dhtmlxscheduler_serialize.js'></script>
+  <script src="js/jquery-2.2.3.min.js"></script>
   <link rel="stylesheet" href="calendarJS/codebase/dhtmlxscheduler.css" type="text/css" media="screen" title="no title" charset="utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" href="css/simple-sidebar.css">
@@ -53,10 +54,15 @@
     }
 
     scheduler.config.xml_date="%Y-%m-%d %H:%i";
-    scheduler.config.readonly = false;
+    scheduler.config.readonly = true;
     scheduler.config.now_date = new Date(2016, 9, 13);
     scheduler.init('scheduler_here',new Date(2016,9,13),"month");
     scheduler.parse(events,"json");
+
+    var evns = scheduler.getEvents(new Date(2016,9,10),new Date(2016,9,16));
+    console.log(evns);
+    var numberEvents = evns.length;
+    $("#EventNumber").append('<h3>There are '+numberEvents+' events this week</h3>');
     
   }
 </script>
@@ -64,6 +70,7 @@
 <body onload="init();">
   <div class="col-md-4 col-sm-6 col-xs-8" id="content">
     <h1>Parengage - Calendar</h1>
+    <div id="EventNumber"></div>
     <script src="js/toolbar.js"></script>
   </div>
     <div id="scheduler_here" class="dhx_cal_container" style='width:65%; height:65%;'>
