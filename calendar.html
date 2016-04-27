@@ -59,11 +59,23 @@
     scheduler.init('scheduler_here',new Date(2016,9,13),"month");
     scheduler.parse(events,"json");
 
-    var evns = scheduler.getEvents(new Date(2016,9,10),new Date(2016,9,16));
-    console.log(evns);
-    var numberEvents = evns.length;
-    $("#EventNumber").append('<h3>There are '+numberEvents+' events this week</h3>');
-    
+    var week = scheduler.getEvents(new Date(2016,9,13),new Date(2016,9,20));
+    var today = scheduler.getEvents(new Date(2016,9,13),new Date(2016,9,14));
+    var text = "";
+    text += '<h4>Today\'s Events</h4>';
+    text += '<ul>'
+    for(i=0; i< today.length; i++){
+      text += '<li>' + today[i].text + '</li>';
+    }
+    text += '</ul>';
+    text += '<h4>This Week\'s Events</h4>';
+    text += '<ul>'
+    for(i=0; i< week.length; i++){
+      text += '<li>' + week[i].text + '</li>';
+    }
+    text += '</ul>';
+
+    $("#EventNumber").append(text);
   }
 </script>
 
