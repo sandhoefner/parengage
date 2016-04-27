@@ -32,4 +32,19 @@ td {
 .message {
 	border-bottom: 1px solid gray;
 	padding: 5px;
+	background-color: lightgray;
+	margin-bottom: 2px;
+	border-radius: 5px;
+}
+
+.replyMessage {
+	margin-left:5px;
+	padding-left: 5px;
+	border-bottom: 0.5px solid gray;
+	margin-bottom: 5px;
+	background-color: #d9edf7
+}
+
+.newmessage {
+	margin-bottom:2px;
 }

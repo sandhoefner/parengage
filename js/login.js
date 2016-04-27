@@ -1,10 +1,12 @@
 
 $(document).ready(function(){
+	// User will either be set to parent or admin based on radioButton
 	user = "";
 	$(".radioButton").click(function() {
 		user = $(this).val();
 	})
 
+	// When user clicks login, check for errors...
 	$("#loginButton").click(function() {
 		// Destroy any previous errorDivs
 		$(".error").remove();

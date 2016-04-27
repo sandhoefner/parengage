@@ -23,6 +23,7 @@ var messages = {
 				{
 					"replyNumber" : 1,
 					"person" : "You", 
+					"date" : "4/27/2016 at 15:48",
 					"message" : "Thanks so much Bernd!"
 				}
 			]
@@ -37,7 +38,7 @@ var teacher = "";
 var messagebutton = " <button class='btn btn-info btn-m newmessage'>New Message</button><br>";
 
 $(document).ready(function() {
-	// loadMessages();
+	loadMessages();
 	writemessage();
 	displayMessages();
 	sendreply();
@@ -46,11 +47,13 @@ $(document).ready(function() {
 var writemessage = function() {
 	$(".newmessage").click(function() {
 		$(this).replaceWith("<div class='newMessageDiv'><select class='form-control teacher_select' id='teacher_select'>\
-          <option value='dummy'>Select a teacher!</option>\
+          <option value=''>Select a teacher!</option>\
           <option value='Bernd'>Bernd</option>\
           <option value='Gajos'>Gajos</option>\
           <option value='King'>King</option>\
-          <option value='Panda'>Panda</option>\
+          <option value='Shapiro'>Shapiro</option>\
+          <option value='Wang'>Wang</option>\
+          <option value='Sandhoefner'>Sandhoefner</option>\
         </select>\
         <br>\
         <input class='form-control newmessagesubject' type='text' name='subject' placeholder='Subject'></input>\
@@ -60,10 +63,35 @@ var writemessage = function() {
         <button class='btn btn-info writemessage' type='submit' id='send_email'>Send</button></div>"); 
 
 
-		$(".writemessage").click(function() {
+		$(".writemessage").click(function() 
+		{
 			message = $(this).parent().children(".newmessagetext").val();
 			subject = $(this).parent().children(".newmessagesubject").val();
 			teacher = $(this).parent().children(".teacher_select").val();
+
+			// Form validation
+
+			// Destroy previous error Divs and remove any error highlighting
+			$(".error").remove();
+			$(this).parent().children().removeClass("alert-danger");
+
+			if (message == "") {
+				appendErrorDiv("You need to type a message");
+				$(".newmessagetext").addClass("alert-danger");
+				
+			} 
+			else if (subject == "") 
+			{
+				appendErrorDiv("Please include a subject for your message");
+				$(".newmessagesubject").addClass("alert-danger");
+			}
+			else if (teacher == "") 
+			{
+				appendErrorDiv("Please select a teacher");
+				$(".teacher_select").addClass("alert-danger");
+			}
+			else 
+			{
 			var time = new Date();
 			var responsetime= (time.getMonth()+1) + '/' + time.getDate() + '/' + time.getFullYear() + ' at ' + time.getHours() + ':' + time.getMinutes();
 			$(this).parent().remove();
@@ -85,9 +113,10 @@ var writemessage = function() {
 			$("#content h1:first-child").after(messagebutton);
 			displayMessages();
 
-			// Allow for new message and reply functionality to work when new messages populate
+			// Callack: Allow for new message and reply functionality to work after new messages populate
 			writemessage();
 			sendreply();
+			}
 		});
 
 	});
@@ -111,13 +140,27 @@ function loadMessages() {
 // Display all the messages that are stored in the messages array
 var displayMessages = function() {
 	for (i = messages["posts"].length - 1; i >= 0; i--) {
-		html = "<div class='message' index='" + messages["posts"][i]["noteNumber"] + "'>";
+		html = "<div class='message message" + messages["posts"][i]["noteNumber"] + "' index='" + messages["posts"][i]["noteNumber"] + "'>";
+		html += "<div>"
 		html += "<h4>" + messages["posts"][i]["subject"] + "</h4>";
 		html += "<p><i>"+ messages["posts"][i]["date"] + " from " + messages["posts"][i]["person"] + " to " + messages["posts"][i]["target"] + "</i></p>"
 		html += "<p>" + messages["posts"][i]["message"] + "</p>";
+		html += "</div>"
+
+		// Add any replies underneath the reply
+		for (j = 0; j < messages["posts"][i]["replies"].length; j++) {
+			html += "<div class='replyMessage' index='" + j + "'>";
+			html += "<p style='color: gray'><i>Posted by " + messages["posts"][i]["replies"][j]["person"] + " at " + messages["posts"][i]["replies"][j]["date"] + " </i></p> ";
+			html += "<p>" + messages["posts"][i]["replies"][j]["message"];
+			html += "</div>";
+			// $("div[index='" + i "']").append(html);
+			// $(".message" + messages["posts"][i]["noteNumber"]).append(html);
+		}
+
 		html += "<button class='btn btn-info btn-xs reply'>Reply</button><br>";
 		html += "</div>";
 		$(".messagesDiv").append(html);
+
 	}
 }
 
@@ -141,7 +184,7 @@ var sendreply = function() {
 			
 			// Save into JSON
 			index = $(this).parent().parent().attr("index");
-			messages[index]["replies"].push({
+			messages["posts"][index]["replies"].push({
 				"replyNumber" : messages["posts"][index]["replies"].length,
 				"person" : "You",
 				"date" : time.getMonth()+1 + '/' + time.getDate() + '/' + time.getFullYear() + ' at ' + time.getHours() + ':' + time.getMinutes(),
@@ -150,19 +193,28 @@ var sendreply = function() {
 			saveToLocalStorage();
 			console.log(messages);
 
-			// Remove the sendreply button
-			$(this).parent().replaceWith("<div><br>You at " + responsetime + ":<br>\"" + message + "\"<br></div>" + replybutton); 
+			// Remove the sendreply button and replace with the contents that user inputted
+			newReplyhtml = "<div class='replyMessage' index='" +  messages["posts"][index]["replies"].length + "'>";
+			newReplyhtml += "<p style='color: gray'><i>Posted by You at " + responsetime + " </i></p> ";
+			newReplyhtml += "<p>" + message + "</p>";
+			newReplyhtml += "</div>";
+
+			$(this).parent().replaceWith(newReplyhtml); 
 
 			sendreply();
 		});
 	});
 }
 
-var addMessage = function() {
-
-
+// Save messages JSON into localStorage
+var saveToLocalStorage = function() {
+	localStorage.setItem("messages", JSON.stringify(messages));
 }
 
-var saveToLocalStorage = function() {
-	localStorage.setItem("messages", messages);
+// Instantiate error Div
+var appendErrorDiv = function(errorText) {
+	html = "<div class='alert alert-danger error' role='alert'>"
+	html += '<span class="glyphicon glyphicon-exclamation-sign" style="font-size: 15px" aria-hidden="true"></span>'
+	html += errorText + "</div>";
+	$(".newMessageDiv").prepend(html);
 }
