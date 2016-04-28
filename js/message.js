@@ -35,16 +35,16 @@ var messages = {
 
 var message = "";
 var teacher = "";
-var messagebutton = " <button class='btn btn-info btn-m newmessage'>New Message</button><br>";
+var messagebutton = " <button class='btn btn-info btn-m newmessage' id='new'>New Message</button><br>";
 
 $(document).ready(function() {
 	loadMessages();
 	writemessage();
 	displayMessages();
 	sendreply();
-})
+});
 
-var writemessage = function() {
+function writemessage() {
 	$(".newmessage").click(function() {
 		$(this).replaceWith("<div class='newMessageDiv'><select class='form-control teacher_select' id='teacher_select'>\
           <option value=''>Select a teacher!</option>\
@@ -217,4 +217,16 @@ var appendErrorDiv = function(errorText) {
 	html += '<span class="glyphicon glyphicon-exclamation-sign" style="font-size: 15px" aria-hidden="true"></span>'
 	html += errorText + "</div>";
 	$(".newMessageDiv").prepend(html);
+}
+
+
+
+
+
+var teachers_array = ['Bernd', "Gajos", "King", "Shapiro", "Wang", "Sandhoefner"];
+var hash = window.location.hash.substring(1);
+index = $.inArray(hash, teachers_array);
+if (index !== -1) {
+  	// need to prep message for teacher
+  	console.log(hash);
 }
