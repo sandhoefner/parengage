@@ -227,6 +227,12 @@ var teachers_array = ['Bernd', "Gajos", "King", "Shapiro", "Wang", "Sandhoefner"
 var hash = window.location.hash.substring(1);
 index = $.inArray(hash, teachers_array);
 if (index !== -1) {
-  	// TODO: need to prep message for teacher
   	console.log(hash);
+  	$("document").ready(function() {
+  		// timeout method may be buggy?
+    setTimeout(function() {
+        $("#new").trigger('click');
+        $("#teacher_select").val(hash);
+    },10);
+});
 }
