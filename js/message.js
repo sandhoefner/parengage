@@ -31,11 +31,10 @@ var messages = {
 	]
 }
 
-//reply to post
-
-var message = "";
-var teacher = "";
-var messagebutton = " <button class='btn btn-info btn-m newmessage' id='new'>New Message</button><br>";
+// Message button to populate 
+var messagebutton = " <button class='btn btn-info btn-m newmessage' id='new'>\
+	<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>\
+	New Message</button><br>";
 
 $(document).ready(function() {
 	loadMessages();
@@ -44,6 +43,7 @@ $(document).ready(function() {
 	sendreply();
 });
 
+// Populates the New Message form on html
 function writemessage() {
 	$(".newmessage").click(function() {
 		$(this).replaceWith("<div class='newMessageDiv'><select class='form-control teacher_select' id='teacher_select'>\
@@ -123,7 +123,7 @@ function writemessage() {
 }
 
 
-	// Load messages from localStorage or use default ones
+// Load messages from localStorage or use default ones
 function loadMessages() {
 	if (localStorage.getItem("messages"))
 	{
@@ -157,7 +157,7 @@ var displayMessages = function() {
 			// $(".message" + messages["posts"][i]["noteNumber"]).append(html);
 		}
 
-		html += "<button class='btn btn-info btn-xs reply'>Reply</button><br>";
+		html += "<button class='btn btn-info btn-xs reply'><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span>Reply</button><br>";
 		html += "</div>";
 		$(".messagesDiv").append(html);
 
@@ -168,13 +168,19 @@ var clearMessages = function() {
 	$(".messagesDiv").empty();
 }
 
+// After user hits "reply", load the form and sendreply button
 var sendreply = function() {
 
-	var replybutton = "<br><button class='btn btn-info btn-xs reply'>Reply</button>";
+	var replybutton = "<br><button class='btn btn-info btn-xs reply'>\
+	<span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span>\
+	Reply</button>";
 
 	// Replace reply button with input text
 	$(".reply").click(function() {
-		$(this).replaceWith("<div><textarea class='form-control message' type='text' name='email_body' placeholder='Message'></textarea><br><button class='btn btn-info btn-xs sendreply' type='submit'>Send Reply</button></div>"); 
+		$(this).replaceWith("<div><textarea class='form-control message replyTextArea' type='text' name='email_body' placeholder='Message'></textarea><br>\
+			<button class='btn btn-info btn-xs sendreply' type='submit'>\
+			<span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span>\
+			Send Reply</button></div>"); 
 
 		// When they click reply
 		$(".sendreply").click(function() {
@@ -198,8 +204,11 @@ var sendreply = function() {
 			newReplyhtml += "<p style='color: gray'><i>Posted by You at " + responsetime + " </i></p> ";
 			newReplyhtml += "<p>" + message + "</p>";
 			newReplyhtml += "</div>";
-
 			$(this).parent().replaceWith(newReplyhtml); 
+
+			// Repopulate screen with reply button
+			replyButtonHTML = "<button class='btn btn-info btn-xs reply'><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span>Reply</button><br>";
+			$(".message" + index).append(replyButtonHTML);
 
 			sendreply();
 		});
@@ -219,10 +228,7 @@ var appendErrorDiv = function(errorText) {
 	$(".newMessageDiv").prepend(html);
 }
 
-
-
-
-
+// If coming from grades page, see if there's a teacher that was clicked and prepopulate form
 var teachers_array = ['Bernd', "Gajos", "King", "Shapiro", "Wang", "Sandhoefner"];
 var hash = window.location.hash.substring(1);
 index = $.inArray(hash, teachers_array);

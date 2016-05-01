@@ -22,23 +22,90 @@
 
 	"weeklyParentData" : 
 	{
-		"9/5" : 
+		"Sep5" : 
 		[
 			{
 				"gradeLevel" : 9,
-				"parents" : 125
+				"parents" : 150,
+				"missingParents" : [
+					"John Garcia", 
+					"Brenda Jones",
+					"Mateo Rodriguez",
+					"Melissa Balkman",
+					"Amanda Rosas",
+					"Vanessa Martinez",
+					"Renee Drake",
+					"Shakira Rito"
+				]
 			},
 			{
 				"gradelevel" : 10,
-				"parents" : 208
+				"parents" : 211
 			},
 			{
 				"gradelevel" : 11,
-				"parents" : 152
+				"parents" : 176
 			},
 			{
 				"gradelevel" : 12,
-				"parents" : 98
+				"parents" : 133
+			}
+		],
+		"Sep12" : 
+		[
+			{
+				"gradeLevel" : 9,
+				"parents" : 108
+			},
+			{
+				"gradelevel" : 10,
+				"parents" : 164
+			},
+			{
+				"gradelevel" : 11,
+				"parents" : 173
+			},
+			{
+				"gradelevel" : 12,
+				"parents" : 102
+			}
+		],
+		"Sep19" : 
+		[
+			{
+				"gradeLevel" : 9,
+				"parents" : 88
+			},
+			{
+				"gradelevel" : 10,
+				"parents" : 150
+			},
+			{
+				"gradelevel" : 11,
+				"parents" : 153
+			},
+			{
+				"gradelevel" : 12,
+				"parents" : 73
+			}
+		],
+		"Sep26" : 
+		[
+			{
+				"gradeLevel" : 9,
+				"parents" : 92
+			},
+			{
+				"gradelevel" : 10,
+				"parents" : 125
+			},
+			{
+				"gradelevel" : 11,
+				"parents" : 140
+			},
+			{
+				"gradelevel" : 12,
+				"parents" : 65
 			}
 		]
 	}

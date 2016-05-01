@@ -10,11 +10,15 @@ $(document).ready(function() {
 			totalParents += data['parentTotalData'][i]["parents"];
 		}
 		// Total number of parents logging in the week of 9/5
-		for (i = 0; i < data["weeklyParentData"]["9/5"].length; i++) 
+		for (i = 0; i < data["weeklyParentData"]["Sep5"].length; i++) 
 		{
-			parentsSeptember5th += data["weeklyParentData"]["9/5"][i]["parents"];
+			parentsSeptember5th += data["weeklyParentData"]["Sep5"][i]["parents"];
 		}
-		createWeeklySummaryDiv("Summary for Week of 9/5", generateGradeLevelArray(data, "9/5"));
+		// Create Summary Divs and Instantiate them onto page
+		createWeeklySummaryDiv("Summary for Week of 9/26", "Sep26", generateGradeLevelArray(data, "Sep26"));
+		createWeeklySummaryDiv("Summary for Week of 9/19", "Sep19", generateGradeLevelArray(data, "Sep19"));
+		createWeeklySummaryDiv("Summary for Week of 9/12", "Sep12", generateGradeLevelArray(data, "Sep12"));
+		createWeeklySummaryDiv("Summary for Week of 9/5", "Sep5", generateGradeLevelArray(data, "Sep5"));
 		// createProgressBar ("Week of 9/5 - 9th Grade Activity", ninthGradeSep5thTotal, ninthGradeParentTotal);
 	});
 
@@ -37,6 +41,8 @@ var generateGradeLevelArray = function(data, date) {
 		gradeWeekParentTotal = data["weeklyParentData"][date][i]["parents"];
 		gradeParentTotal = data["parentTotalData"][i]["parents"];
 		weekOf = date;
+		missingParents = data["weeklyParentData"][date][i]["missingParents"];
+		console.log(missingParents);
 		gradeArray = [title, gradeWeekParentTotal, gradeParentTotal, weekOf];
 		allGradesArray.push(gradeArray);
 
@@ -44,6 +50,7 @@ var generateGradeLevelArray = function(data, date) {
 		totalWeeklyParents += gradeWeekParentTotal;
 
 	}
+
 	// Add total gradeArray for all grades combined into allGradesArray
 	summaryTitle = "Overall Parent Activity";
 	weekOf = date;
@@ -53,29 +60,58 @@ var generateGradeLevelArray = function(data, date) {
 	return allGradesArray;
 }
 
-// 
-var createWeeklySummaryDiv = function(title, allGradesArray) {
+// Week parameter treated purely to append progress bars to correct Div
+var createWeeklySummaryDiv = function(title, week, allGradesArray) {
 
 	// Create weekly summary div for progress bars to be added to
-	html = '<div class="weekSummary"><h3>' + title + '</h3></div>';
+	var html = '<div class="weekSummary' + week + '"><h3>' + title + '</h3></div>';
 	$("#content").append(html);
 
-	// Create overall progress for the day
-	html = createProgressBar(allGradesArray[4][0], allGradesArray[4][1], allGradesArray[i][2], true, "Sep5");
-	$(".weekSummary").append(html); 
+	// Create overall progress Div for the week
+	html = createProgressBar(allGradesArray[4][0], allGradesArray[4][1], allGradesArray[i][2], true, week);
+	$(".weekSummary" + week).append(html); 
 
-	// Create progress bar to add for 9th - 12th graders; -1 becaues the last item in array is the overall weekly % for all grades
+	// Add quick number of parents that participated
+	var quickSumHTML = "<div class='weekSum weekSum" + week + "'>";
+	quickSumHTML += "<p><b>" + allGradesArray[4][1] + "/" + allGradesArray[4][2] + "</b> parents participated this week</p>"; 
+	quickSumHTML += "</div>";
+	$(".header" + week).append(quickSumHTML);
+
+	// Create Dropdown button and attach it to weekSummary div to reveal parent participation by grade level
+	// ".header" + week is created in createProgressBar
+	var dropDownHTML = '<button class="dropdown'+ week + ' btn btn-info" id="btn-gradeDropdown">';
+	dropDownHTML += '<span style="font-size: 16">By Grade Level</span>';
+	dropDownHTML += '<span class="glyphicon glyphicon-menu-down" aria-hidden="true" style="font-size: 15"></span>';
+	dropDownHTML += '</button>';
+	$(".header" + week).append(dropDownHTML);
+
+	// Create Div that will contain all the progress bars by grade level
+	$(".weekSummary" + week).append("<div class='weeklyBreakdownDiv" + week + "'>");
+
+	// That div should initially be hidden
+	$(".weeklyBreakdownDiv" + week).hide();
+
+	// Show or hide parent participation by gradelevel based on whether it's already open or not
+	$(".dropdown" + week).click(function() {
+		if ($(".weeklyBreakdownDiv" + week).is(":hidden")) {
+			$(".weeklyBreakdownDiv" + week).show();
+		} else {
+			$(".weeklyBreakdownDiv" + week).hide();
+		}
+	})
+
+	// Create progress bar to add for 9th - 12th graders; length -1 because the last item in array is the overall weekly % for all grades
 	for (i = 0; i < allGradesArray.length - 1; i++) 
 	{
-		html = createProgressBar(allGradesArray[i][0], allGradesArray[i][1], allGradesArray[i][2], false, "Sep5");
-		$(".headerSep5").append(html);
+		html = createProgressBar(allGradesArray[i][0], allGradesArray[i][1], allGradesArray[i][2], false, week);
+		$(".weeklyBreakdownDiv" + week).append(html);
 		//TODO: THIS IS HARD CODED. NEED SOMETHING ELSE BESIDES PUTTING IN SEP5. PROBABLY NEEDS CHANGE IN JSON
 	}
 }
 
 /*
 *
-*Generates the Progress Bar DOM elements and adds them to the page
+*Creates the Progress Bar DOM HTML to be added to the page. Not actually instantiated until createWeeklySummaryDiv is called
 * title = Title that will appear at top of progress bar
 * parentsActive = integer for how many parents active 
 * totalParents = total Parents (parentsActive will be divided by totalParents)
@@ -97,7 +133,7 @@ var createProgressBar = function(title, parentsActive, totalParents, bold, date)
 
 	html += '">'
 
-	// How big the title is depending on whether it's the header
+	// How big the title is depending on whether it's the header (summary for the week) or just a grade levle breakdown
 	if (bold) 
 	{
 		html += '<h3>' + title + '</h3>';
@@ -105,19 +141,26 @@ var createProgressBar = function(title, parentsActive, totalParents, bold, date)
 	{
 		html += '<h5>' + title + '</h5>'
 	}
+
+	// Depending on participation level of parents, change the color of the progress bar
+	var progressStatus = "";
+	if (percentActive > 75) 
+	{
+		progressStatus = "progress-bar-success";
+	} 
+	else if (percentActive >50) {
+		progressStatus = "progress-bar-warning";
+	}
+	else {
+		progressStatus = "progress-bar-danger";
+	}
+
 	html += '<div class="progress">';
-	html += '<div class="progress-bar parentProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"';
+	html += '<div class="progress-bar ' + progressStatus + ' parentProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"';
 	html+= 'style="width:' + Math.round(percentActive) + '%;">';
 	html+= Math.round(percentActive) + '%';
 	html+= '</div>';
 	html+= '</div>';
-	/*if (bold) 
-	{
-		html+= '<button class="dropdownGradeLevels">';
-		html+= '<span style="font-size: 16">Activity for Each Grade</span>';
-		html+= '<span class="glyphicon glyphicon-menu-down" aria-hidden="true" style="font-size: 20"></span>';
-		html+= '</button>';
-	}*/
 	html+= '</div>';
 	return html;
 }

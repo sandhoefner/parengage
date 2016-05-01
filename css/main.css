@@ -29,6 +29,9 @@ td {
 	background-color: #F2DEDE;
 }
 
+/*
+	Messages.html and messages.js
+*/
 .message {
 	border-bottom: 1px solid gray;
 	padding: 5px;
@@ -45,6 +48,22 @@ td {
 	background-color: #d9edf7
 }
 
+.replyTextArea {
+	background-color: white;
+}
+
 .newmessage {
 	margin-bottom:2px;
 }
+
+.glyphicon-edit, .glyphicon-share-alt {
+	font-size: 15px;
+}
+
+#glyphiconEnvelope, #glyphiconQuestion {
+	font-size: 15px;
+}
+
+/* 
+	Admin Dashboard
+*/

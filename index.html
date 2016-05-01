@@ -141,7 +141,7 @@
                             // teachers
                             td.innerHTML += '<div style="float:left;width:70%;">' + key_array[i - 1]; + '</div>';
                             
-                            td.innerHTML += '<div style="float:right;width:30%;"><span class="glyphicon glyphicon-envelope aria-hidden=" true"=""></span></div>';
+                            td.innerHTML += '<div style="float:right;width:30%;"><span class="glyphicon glyphicon-envelope aria-hidden=" id="glyphiconEnvelope" true"=""></span></div>';
                             td.id = key_array[i-1];
                             td.onclick = function() {
                         detail(this.id)
@@ -155,7 +155,7 @@
                         } else {
                             // grades
                             td.appendChild(document.createTextNode(data_array[i - 1].grade));
-                            td.innerHTML += '<span class="glyphicon glyphicon-question-sign aria-hidden=" true"=""></span>';
+                            td.innerHTML += '<span class="glyphicon glyphicon-question-sign aria-hidden=" id="glyphiconQuestion" true"=""></span>';
                             $(td).addClass("clickable");
 
                             td.id = i;
