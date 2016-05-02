@@ -43,7 +43,7 @@ $(document).ready(function() {
     }
 
     /* saveForm grabs the values of the form created from addTaskForm
-    Shoudl be trigged when admin hits "Add Task"*/
+    Should be trigged when admin hits "Add Task"*/
 
     var saveForm = function() {
         taskName = $(".taskName").val();
