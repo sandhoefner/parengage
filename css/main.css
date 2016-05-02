@@ -12,6 +12,11 @@ th {
 	text-align: center;
 }
 
+tf {
+	text-align: center;
+	text-decoration: none;
+}
+
 td {
 	text-align: center;
 	/*text-decoration: underline;*/
