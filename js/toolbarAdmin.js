@@ -14,7 +14,7 @@ document.getElementById('toolbar').appendChild(ul);
 
 var toolbar = ['Dashboard', 'Calendar', 'Tasks', 'Forum', 'Colleges', 'Log Out'];
 var glyphicons = ['book', 'calendar', 'envelope', 'comment', 'globe', 'log-out']
-var links = ['adminDashboard.html', 'admincalendar.html', 'adminTasks.html', 'forum.html', 'adminColleges.html', 'login.html'];
+var links = ['adminDashboard.html', 'admincalendar.html', 'adminTasks.html', 'adminForum.html', 'adminColleges.html', 'login.html'];
 
 for (button in toolbar) {
   var li = document.createElement('li');

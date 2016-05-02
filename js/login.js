@@ -25,6 +25,9 @@ $(document).ready(function(){
 					if (username == data["parents"][i]["username"] && password == data["parents"][i]["password"]) {
 						localStorage.setItem("username", username);
 						localStorage.setItem("password", password);
+						// TODO: Hard coded for now to take the first parent data, but if more parents, 
+						//then it should get the correct index
+						localStorage.setItem("userData", JSON.stringify(data["parents"][0]))
 						window.location.href = "../index.html";
 					} else {
 						appendErrorDiv("Sorry your username or password is incorrect!");
@@ -37,6 +40,8 @@ $(document).ready(function(){
 					if (username == data["admin"][i]["username"] && password == data["admin"][i]["password"]) {
 						localStorage.setItem("username", username);
 						localStorage.setItem("password", password);
+						localStorage.setItem("userData", JSON.stringify(data["admin"][0]))
+
 						window.location.href = "../adminDashboard.html";
 					} else {
 						appendErrorDiv("Sorry your username or password is incorrect!");

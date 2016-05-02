@@ -11,7 +11,9 @@
 	"admin" : [
 		{
 			"username" : "admin",
-			"password" : "admin"
+			"password" : "admin",
+			"firstName" : "Admin",
+			"lastName" : ""
 		}
 	]
 }

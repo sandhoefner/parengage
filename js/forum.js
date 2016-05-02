@@ -57,7 +57,6 @@ function writemessage() {
 			var message = $(this).parent().children(".newmessagetext").val();
 			var subject = $(this).parent().children(".newmessagesubject").val();
 			// Form validation
-
 			// Destroy previous error Divs and remove any error highlighting
 			$(".error").remove();
 			$(this).parent().children().removeClass("alert-danger");
@@ -69,6 +68,8 @@ function writemessage() {
 			}
 			else 
 			{
+			var user = JSON.parse(localStorage.getItem("userData"));
+			user = user["firstName"] + " " + user["lastName"];
 			var time = new Date();
 			var responsetime= (time.getMonth()+1) + '/' + time.getDate() + '/' + time.getFullYear() + ' at ' + time.getHours() + ':' + time.getMinutes();
 			$(this).parent().remove();
@@ -78,7 +79,7 @@ function writemessage() {
 			forumMessages["posts"].push({
 				"noteNumber" : forumMessages["posts"].length,
 				"subject" : subject,
-				"person" : "You",
+				"person" : user,
 				"date" : responsetime,
 				"message" : message,
 				"replies" : []
@@ -103,7 +104,6 @@ function writemessage() {
 function loadMessages() {
 	if (localStorage.getItem("forumMessages"))
 	{
-		console.log("hey!")
 		console.log(localStorage.getItem("forumMessages"))
 		forumMessages = JSON.parse(localStorage.getItem("forumMessages"));
 		console.log(forumMessages);
@@ -154,15 +154,19 @@ var sendreply = function() {
 
 		// When they click reply
 		$(".sendreply").click(function() {
+			// Grab key variables
 			message = $(this).parent().children(".message").val();
 			var time = new Date();
 			var responsetime= (time.getMonth()+1) + '/' + time.getDate() + '/' + time.getFullYear() + ' ' + time.getHours() + ':' + time.getMinutes();
-			
+			var user = JSON.parse(localStorage.getItem("userData"));
+			user = user["firstName"] + " " + user["lastName"];
+
 			// Save into JSON
+
 			index = $(this).parent().parent().attr("index");
 			forumMessages["posts"][index]["replies"].push({
 				"replyNumber" : forumMessages["posts"][index]["replies"].length,
-				"person" : "You",
+				"person" : user,
 				"date" : time.getMonth()+1 + '/' + time.getDate() + '/' + time.getFullYear() + ' at ' + time.getHours() + ':' + time.getMinutes(),
 				"message" : message,
 			})
@@ -171,7 +175,7 @@ var sendreply = function() {
 
 			// Remove the sendreply button and replace with the contents that user inputted
 			newReplyhtml = "<div class='replyMessage' index='" +  forumMessages["posts"][index]["replies"].length + "'>";
-			newReplyhtml += "<p style='color: gray'><i><b>Posted by You at " + responsetime + " </b></i></p> ";
+			newReplyhtml += "<p style='color: gray'><i><b>Posted by " + user + " at " + responsetime + " </b></i></p> ";
 			newReplyhtml += "<p>" + message + "</p>";
 			newReplyhtml += "</div>" + replybutton;
 
@@ -194,7 +198,6 @@ var appendErrorDiv = function(errorText) {
 	html += errorText + "</div>";
 	$(".newMessageDiv").prepend(html);
 }
-
 
 
 
