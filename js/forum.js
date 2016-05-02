@@ -1,10 +1,11 @@
 // JSON storing all posts and replies
 
-var messages = {
+var forumMessages = {
 	posts : 
 	[
 		{
 			"noteNumber" : 0,
+			"subject" : "Carpooling this week",
 			"person" : "Jennifer Viles",
 			"date" : "4/15/2016 at 10:22",
 			"message" : "Can anyone help my son carpool to the basketball game? It's a busy week at...",
@@ -12,6 +13,7 @@ var messages = {
 		},
 		{
 			"noteNumber" : 1,
+			"subject" : "Contacting Mr. Bernd",
 			"person" : "Pam Sanders",
 			"date" : "4/20/2016 at 6:40",
 			"message" : "Is anyone else having trouble getting Mr. Bernd to respond to emails? I tried talking to the...",
@@ -43,15 +45,17 @@ $(document).ready(function() {
 function writemessage() {
 	$(".newmessage").click(function() {
 		$(this).replaceWith("<div class='newMessageDiv'>\
-        <textarea class='form-control newmessagetext' type='text' name='email_body' placeholder='Message'></textarea>\
+		<input class='form-control newmessagesubject' type='text' name='subject' placeholder='Subject'></input>\
+		<br>\
+		<textarea class='form-control newmessagetext' type='text' name='email_body' placeholder='Message'></textarea>\
         <br>\
         <button class='btn btn-info writemessage' type='submit' id='send_email'>Send</button></div>"); 
 
 
 		$(".writemessage").click(function() 
 		{
-			message = $(this).parent().children(".newmessagetext").val();
-
+			var message = $(this).parent().children(".newmessagetext").val();
+			var subject = $(this).parent().children(".newmessagesubject").val();
 			// Form validation
 
 			// Destroy previous error Divs and remove any error highlighting
@@ -71,14 +75,15 @@ function writemessage() {
 			// $(this).parent().replaceWith(messagebutton + "<br></br><h4>"+responsetime+"</h4><br>"+ "<div><br> You writing to " + teacher + " at " + responsetime + ":<br>\"" + message + "\"<br></div>"); 
 
 			// Add new note to JSON
-			messages["posts"].push({
-				"noteNumber" : messages["posts"].length,
+			forumMessages["posts"].push({
+				"noteNumber" : forumMessages["posts"].length,
+				"subject" : subject,
 				"person" : "You",
 				"date" : responsetime,
 				"message" : message,
 				"replies" : []
 			})
-			console.log(messages);
+			console.log(forumMessages);
 			saveToLocalStorage();
 			clearMessages();
 			$("#content h1:first-child").after(messagebutton);
@@ -96,12 +101,12 @@ function writemessage() {
 
 	// Load messages from localStorage or use default ones
 function loadMessages() {
-	if (localStorage.getItem("messages"))
+	if (localStorage.getItem("forumMessages"))
 	{
 		console.log("hey!")
-		console.log(localStorage.getItem("messages"))
-		messages = JSON.parse(localStorage.getItem("messages"));
-		console.log(messages);
+		console.log(localStorage.getItem("forumMessages"))
+		forumMessages = JSON.parse(localStorage.getItem("forumMessages"));
+		console.log(forumMessages);
 	}
 	else 
 	{
@@ -110,18 +115,19 @@ function loadMessages() {
 
 // Display all the messages that are stored in the messages array
 var displayMessages = function() {
-	for (i = messages["posts"].length - 1; i >= 0; i--) {
-		html = "<div class='message message" + messages["posts"][i]["noteNumber"] + "' index='" + messages["posts"][i]["noteNumber"] + "'>";
+	for (i = forumMessages["posts"].length - 1; i >= 0; i--) {
+		html = "<div class='message message" + forumMessages["posts"][i]["noteNumber"] + "' index='" + forumMessages["posts"][i]["noteNumber"] + "'>";
 		html += "<div>"
-		html += "<h4>"+ messages["posts"][i]["date"] + " from " + messages["posts"][i]["person"]+ "</h4>"
-		html += "<p>" + messages["posts"][i]["message"] + "</p>";
+		html += "<h3>" + forumMessages["posts"][i]["subject"] + "</h3>";
+		html += "<h4>"+ forumMessages["posts"][i]["date"] + " from " + forumMessages["posts"][i]["person"]+ "</h4>"
+		html += "<p>" + forumMessages["posts"][i]["message"] + "</p>";
 		html += "</div>"
 
 		// Add any replies underneath the reply
-		for (j = 0; j < messages["posts"][i]["replies"].length; j++) {
+		for (j = 0; j < forumMessages["posts"][i]["replies"].length; j++) {
 			html += "<div class='replyMessage' index='" + j + "'>";
-			html += "<p style='color: gray'><i><b>Posted by " + messages["posts"][i]["replies"][j]["person"] + " at " + messages["posts"][i]["replies"][j]["date"] + " </b></i></p> ";
-			html += "<p>" + messages["posts"][i]["replies"][j]["message"];
+			html += "<p style='color: gray'><i><b>Posted by " + forumMessages["posts"][i]["replies"][j]["person"] + " at " + forumMessages["posts"][i]["replies"][j]["date"] + " </b></i></p> ";
+			html += "<p>" + forumMessages["posts"][i]["replies"][j]["message"];
 			html += "</div>";
 			// $("div[index='" + i "']").append(html);
 			// $(".message" + messages["posts"][i]["noteNumber"]).append(html);
@@ -154,17 +160,17 @@ var sendreply = function() {
 			
 			// Save into JSON
 			index = $(this).parent().parent().attr("index");
-			messages["posts"][index]["replies"].push({
-				"replyNumber" : messages["posts"][index]["replies"].length,
+			forumMessages["posts"][index]["replies"].push({
+				"replyNumber" : forumMessages["posts"][index]["replies"].length,
 				"person" : "You",
 				"date" : time.getMonth()+1 + '/' + time.getDate() + '/' + time.getFullYear() + ' at ' + time.getHours() + ':' + time.getMinutes(),
 				"message" : message,
 			})
 			saveToLocalStorage();
-			console.log(messages);
+			console.log(forumMessages);
 
 			// Remove the sendreply button and replace with the contents that user inputted
-			newReplyhtml = "<div class='replyMessage' index='" +  messages["posts"][index]["replies"].length + "'>";
+			newReplyhtml = "<div class='replyMessage' index='" +  forumMessages["posts"][index]["replies"].length + "'>";
 			newReplyhtml += "<p style='color: gray'><i><b>Posted by You at " + responsetime + " </b></i></p> ";
 			newReplyhtml += "<p>" + message + "</p>";
 			newReplyhtml += "</div>" + replybutton;
@@ -178,7 +184,7 @@ var sendreply = function() {
 
 // Save messages JSON into localStorage
 var saveToLocalStorage = function() {
-	localStorage.setItem("messages", JSON.stringify(messages));
+	localStorage.setItem("forumMessages", JSON.stringify(forumMessages));
 }
 
 // Instantiate error Div
