@@ -1,7 +1,11 @@
 .progressWrapper {
-	margin-left: 5%;
 	background-color: #D3D3D3;
 	padding: 10px;
+}
+
+/*Progress Bar by grade level that are broken down*/
+.breakdown {
+	margin-left: 5%;
 }
 
 .taskInput {
@@ -10,4 +14,13 @@
 
 .task {
 	border-bottom: 1px solid gray;
+}
+
+.weekSum {
+	text-align: center;
+}
+
+#btn-gradeDropdown {
+	padding: 3px;
+	font-size: 14px;
 }

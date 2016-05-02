@@ -12,9 +12,9 @@ ul.className = 'sidebar-nav';
 ul.id = 'toolbar_list';
 document.getElementById('toolbar').appendChild(ul);
 
-var toolbar = ['Dashboard', 'Calendar', 'Tasks', 'Colleges', 'Log Out'];
-var glyphicons = ['book', 'calendar', 'envelope', 'globe', 'log-out']
-var links = ['adminDashboard.html', 'admincalendar.html', 'adminTasks.html', 'adminColleges.html', 'login.html'];
+var toolbar = ['Dashboard', 'Calendar', 'Tasks', 'Forum', 'Colleges', 'Log Out'];
+var glyphicons = ['book', 'calendar', 'envelope', 'comment', 'globe', 'log-out']
+var links = ['adminDashboard.html', 'admincalendar.html', 'adminTasks.html', 'forum.html', 'adminColleges.html', 'login.html'];
 
 for (button in toolbar) {
   var li = document.createElement('li');

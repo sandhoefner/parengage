@@ -5,36 +5,33 @@ var messages = {
 	[
 		{
 			"noteNumber" : 0,
-			"person" : "Gajos",
-			"target" : "You",
-			"subject" : "Jeff's Last Exam",
-			"date" : "4/16/2016 at 9:52",
-			"message" : "Jeff did very well on the last exam!",
+			"person" : "Jennifer Viles",
+			"date" : "4/15/2016 at 10:22",
+			"message" : "Can anyone help my son carpool to the basketball game? It's a busy week at...",
 			"replies" : []
 		},
 		{
 			"noteNumber" : 1,
-			"person": "Bernd",
-			"target" : "You",
-			"subject" : "Back to School Night",
-			"date" : "4/15/2016 at 6:40",
-			"message" : "Here is a rundown on what happened at back to school night. I gave out a syllabus.",
+			"person" : "Pam Sanders",
+			"date" : "4/20/2016 at 6:40",
+			"message" : "Is anyone else having trouble getting Mr. Bernd to respond to emails? I tried talking to the...",
 			"replies" : [
 				{
 					"replyNumber" : 1,
-					"person" : "You", 
+					"person" : "Rob Smith", 
 					"date" : "4/27/2016 at 15:48",
-					"message" : "Thanks so much Bernd!"
+					"message" : "I'm also having trouble, who should we reach out to?"
 				}
 			]
 		}
 	]
 }
 
-// Message button to populate 
-var messagebutton = " <button class='btn btn-info btn-m newmessage' id='new'>\
-	<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>\
-	New Message</button><br>";
+//reply to post
+
+var message = "";
+var teacher = "";
+var messagebutton = " <button class='btn btn-info btn-m newmessage' id='new'>New Discussion</button>";
 
 $(document).ready(function() {
 	loadMessages();
@@ -43,21 +40,9 @@ $(document).ready(function() {
 	sendreply();
 });
 
-// Populates the New Message form on html
 function writemessage() {
 	$(".newmessage").click(function() {
-		$(this).replaceWith("<div class='newMessageDiv'><select class='form-control teacher_select' id='teacher_select'>\
-          <option value=''>Select a teacher!</option>\
-          <option value='Bernd'>Bernd</option>\
-          <option value='Gajos'>Gajos</option>\
-          <option value='King'>King</option>\
-          <option value='Shapiro'>Shapiro</option>\
-          <option value='Wang'>Wang</option>\
-          <option value='Sandhoefner'>Sandhoefner</option>\
-        </select>\
-        <br>\
-        <input class='form-control newmessagesubject' type='text' name='subject' placeholder='Subject'></input>\
-        <br>\
+		$(this).replaceWith("<div class='newMessageDiv'>\
         <textarea class='form-control newmessagetext' type='text' name='email_body' placeholder='Message'></textarea>\
         <br>\
         <button class='btn btn-info writemessage' type='submit' id='send_email'>Send</button></div>"); 
@@ -66,8 +51,6 @@ function writemessage() {
 		$(".writemessage").click(function() 
 		{
 			message = $(this).parent().children(".newmessagetext").val();
-			subject = $(this).parent().children(".newmessagesubject").val();
-			teacher = $(this).parent().children(".teacher_select").val();
 
 			// Form validation
 
@@ -79,16 +62,6 @@ function writemessage() {
 				appendErrorDiv("You need to type a message");
 				$(".newmessagetext").addClass("alert-danger");
 				
-			} 
-			else if (subject == "") 
-			{
-				appendErrorDiv("Please include a subject for your message");
-				$(".newmessagesubject").addClass("alert-danger");
-			}
-			else if (teacher == "") 
-			{
-				appendErrorDiv("Please select a teacher");
-				$(".teacher_select").addClass("alert-danger");
 			}
 			else 
 			{
@@ -101,8 +74,6 @@ function writemessage() {
 			messages["posts"].push({
 				"noteNumber" : messages["posts"].length,
 				"person" : "You",
-				"target" : teacher,
-				"subject" : subject,
 				"date" : responsetime,
 				"message" : message,
 				"replies" : []
@@ -123,7 +94,7 @@ function writemessage() {
 }
 
 
-// Load messages from localStorage or use default ones
+	// Load messages from localStorage or use default ones
 function loadMessages() {
 	if (localStorage.getItem("messages"))
 	{
@@ -142,22 +113,21 @@ var displayMessages = function() {
 	for (i = messages["posts"].length - 1; i >= 0; i--) {
 		html = "<div class='message message" + messages["posts"][i]["noteNumber"] + "' index='" + messages["posts"][i]["noteNumber"] + "'>";
 		html += "<div>"
-		html += "<h4>" + messages["posts"][i]["subject"] + "</h4>";
-		html += "<p><i>"+ messages["posts"][i]["date"] + " from " + messages["posts"][i]["person"] + " to " + messages["posts"][i]["target"] + "</i></p>"
+		html += "<h4>"+ messages["posts"][i]["date"] + " from " + messages["posts"][i]["person"]+ "</h4>"
 		html += "<p>" + messages["posts"][i]["message"] + "</p>";
 		html += "</div>"
 
 		// Add any replies underneath the reply
 		for (j = 0; j < messages["posts"][i]["replies"].length; j++) {
 			html += "<div class='replyMessage' index='" + j + "'>";
-			html += "<p style='color: gray'><i>Posted by " + messages["posts"][i]["replies"][j]["person"] + " at " + messages["posts"][i]["replies"][j]["date"] + " </i></p> ";
+			html += "<p style='color: gray'><i><b>Posted by " + messages["posts"][i]["replies"][j]["person"] + " at " + messages["posts"][i]["replies"][j]["date"] + " </b></i></p> ";
 			html += "<p>" + messages["posts"][i]["replies"][j]["message"];
 			html += "</div>";
 			// $("div[index='" + i "']").append(html);
 			// $(".message" + messages["posts"][i]["noteNumber"]).append(html);
 		}
 
-		html += "<button class='btn btn-info btn-xs reply'><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span>Reply</button><br>";
+		html += "<button class='btn btn-info btn-xs reply'>Reply</button><br>";
 		html += "</div>";
 		$(".messagesDiv").append(html);
 
@@ -168,19 +138,13 @@ var clearMessages = function() {
 	$(".messagesDiv").empty();
 }
 
-// After user hits "reply", load the form and sendreply button
 var sendreply = function() {
 
-	var replybutton = "<br><button class='btn btn-info btn-xs reply'>\
-	<span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span>\
-	Reply</button>";
+	var replybutton = "<button class='btn btn-info btn-xs reply'>Reply</button>";
 
 	// Replace reply button with input text
 	$(".reply").click(function() {
-		$(this).replaceWith("<div><textarea class='form-control message replyTextArea' type='text' name='email_body' placeholder='Message'></textarea><br>\
-			<button class='btn btn-info btn-xs sendreply' type='submit'>\
-			<span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span>\
-			Send Reply</button></div>"); 
+		$(this).replaceWith("<div><textarea style='background-color: white' class='form-control message' type='text' name='email_body' placeholder='Message'></textarea><br><button class='btn btn-info btn-xs sendreply' type='submit'>Send Reply</button></div>"); 
 
 		// When they click reply
 		$(".sendreply").click(function() {
@@ -201,14 +165,11 @@ var sendreply = function() {
 
 			// Remove the sendreply button and replace with the contents that user inputted
 			newReplyhtml = "<div class='replyMessage' index='" +  messages["posts"][index]["replies"].length + "'>";
-			newReplyhtml += "<p style='color: gray'><i>Posted by You at " + responsetime + " </i></p> ";
+			newReplyhtml += "<p style='color: gray'><i><b>Posted by You at " + responsetime + " </b></i></p> ";
 			newReplyhtml += "<p>" + message + "</p>";
-			newReplyhtml += "</div>";
-			$(this).parent().replaceWith(newReplyhtml); 
+			newReplyhtml += "</div>" + replybutton;
 
-			// Repopulate screen with reply button
-			replyButtonHTML = "<button class='btn btn-info btn-xs reply'><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span>Reply</button><br>";
-			$(".message" + index).append(replyButtonHTML);
+			$(this).parent().replaceWith(newReplyhtml); 
 
 			sendreply();
 		});
@@ -228,17 +189,9 @@ var appendErrorDiv = function(errorText) {
 	$(".newMessageDiv").prepend(html);
 }
 
-// If coming from grades page, see if there's a teacher that was clicked and prepopulate form
-var teachers_array = ['Bernd', "Gajos", "King", "Shapiro", "Wang", "Sandhoefner"];
-var hash = window.location.hash.substring(1);
-index = $.inArray(hash, teachers_array);
-if (index !== -1) {
-  	console.log(hash);
-  	$("document").ready(function() {
-  		// timeout method may be buggy?
-    setTimeout(function() {
-        $("#new").trigger('click');
-        $("#teacher_select").val(hash);
-    },10);
-});
-}
+
+
+
+
+
+
