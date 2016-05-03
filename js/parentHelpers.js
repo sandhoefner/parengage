@@ -1,11 +1,24 @@
 var isAdmin = function(data) {
-    if (data["firstName"] == "Admin") {
-        console.log("You're an Admin!");
-        return(true);
-    } else{
-        console.log("Youre not an Admin");
-        return(false);
+    // See if firstname exists. If so, then either admin or parent
+    try {
+        // If parent, return true
+        if (data["firstName"] == "Admin") {
+            console.log("You're an Admin!");
+            return(true);
+        } 
+        else 
+        {
+            console.log("Youre not an Admin");
+            return(false);
+        }
+    } 
+    // Otherwise not admin or parent and should return login screen
+    catch (err)
+    {
+        window.location.href = "../login.html";
+
     }
+
 }
 
 // When page is visited, clear the notifications on the sidebar

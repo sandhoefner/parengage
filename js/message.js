@@ -7,9 +7,9 @@ var messages = {
 			"noteNumber" : 0,
 			"person" : "Gajos",
 			"target" : "You",
-			"subject" : "Jeff's Last Exam",
-			"date" : "4/16/2016 at 9:52",
-			"message" : "Jeff did very well on the last exam!",
+			"subject" : "Stevie's Last Exam",
+			"date" : "9/16/2016 at 9:52",
+			"message" : "Stevie did very well on the last exam! It's great to see that he's improving so quickly. I think we're working well together as an awesome parent teacehr team!",
 			"replies" : []
 		},
 		{
@@ -17,8 +17,8 @@ var messages = {
 			"person": "Bernd",
 			"target" : "You",
 			"subject" : "Back to School Night",
-			"date" : "4/15/2016 at 6:40",
-			"message" : "Here is a rundown on what happened at back to school night. I gave out a syllabus.",
+			"date" : "9/22/2016 at 6:40",
+			"message" : "Hi everyone. I gave out a syllabus today in class. You can find it at www.ccts.edu/bernd. I look forward to the year working with your child. Don't worry I grade super fairly! ",
 			"replies" : [
 				{
 					"replyNumber" : 1,
