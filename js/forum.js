@@ -36,6 +36,11 @@ var teacher = "";
 var messagebutton = " <button class='btn btn-info btn-m newmessage' id='new'>New Discussion</button>";
 
 $(document).ready(function() {
+	// Check if user is admin. If it's a parent, clear all notifications from forum for visiting the page
+	var userData = JSON.parse(localStorage.getItem("userData"));
+	if (!isAdmin(userData)) {
+		clearNotifications("Forum");
+	}
 	loadMessages();
 	writemessage();
 	displayMessages();
@@ -84,10 +89,9 @@ function writemessage() {
 				"message" : message,
 				"replies" : []
 			})
-			console.log(forumMessages);
 			saveToLocalStorage();
 			clearMessages();
-			$("#content h1:first-child").after(messagebutton);
+			$("h2").after(messagebutton);
 			displayMessages();
 
 			// Callack: Allow for new message and reply functionality to work after new messages populate
@@ -144,6 +148,7 @@ var clearMessages = function() {
 	$(".messagesDiv").empty();
 }
 
+// Functionality for when user sends a reply;
 var sendreply = function() {
 
 	var replybutton = "<button class='btn btn-info btn-xs reply'>Reply</button>";
@@ -189,6 +194,12 @@ var sendreply = function() {
 // Save messages JSON into localStorage
 var saveToLocalStorage = function() {
 	localStorage.setItem("forumMessages", JSON.stringify(forumMessages));
+	// Also notify user that there are new messages; Call from adminHelpers
+	var userData = JSON.parse(localStorage.getItem("userData"));
+	if (isAdmin(userData)){
+		updateNotifications("Forum");
+	}
+	console.log("yup");
 }
 
 // Instantiate error Div

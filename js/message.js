@@ -75,7 +75,8 @@ function writemessage() {
 			$(".error").remove();
 			$(this).parent().children().removeClass("alert-danger");
 
-			if (message == "") {
+			if (message == "") 
+			{
 				appendErrorDiv("You need to type a message");
 				$(".newmessagetext").addClass("alert-danger");
 				

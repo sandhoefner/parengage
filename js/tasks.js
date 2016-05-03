@@ -8,6 +8,7 @@
 // etc
 //
 $(document).ready(function() {
+
     // document.onload = function() {
     // Increments up every time a task is created. Would be later be taken from JSON
     $(".addTask").click(function() {
@@ -60,10 +61,13 @@ $(document).ready(function() {
             html += '<input type="checkbox">' + split[i] + '</input><br>';
         }
         html += "</div>";
-        html += '<p><a class="clickable" onclick="dele(this.parentElement.parentElement);">Delete</a></p>';
+        html += '<p><a class="clickable btn btn-danger" onclick="dele(this.parentElement.parentElement);">Delete</a></p>';
         html += '</div>';
 
+        // Add new summary line for Tasks if admin
+        $('.listHeader').after('<li class="list-group-item">' + taskName + '<span class="badge">0 completed</span></li>');
 
+        // Save into local storage
         keys.push(taskName);
         localStorage.keys = JSON.stringify(keys);
         split.unshift(taskDate);
@@ -79,6 +83,9 @@ $(document).ready(function() {
         $(".addTask").show();
 
         taskNumber += 1;
+
+        // Notify parents that a new update has been made to tasks
+        updateNotifications("Tasks");
     }
 
     var init = function(name, body, list) {
@@ -91,7 +98,7 @@ $(document).ready(function() {
             html += '<input type="checkbox">' + list[i] + '</input><br>';
         }
         html += "</div>";
-        html += '<p><a class="clickable" onclick="dele(this.parentElement.parentElement);">Delete</a></p>';
+        html += '<p><a class="clickable btn btn-danger" onclick="dele(this.parentElement.parentElement);">Delete</a></p>';
         html += '</div>';
 
         // var total_html = (html + document.getElementById("taskWrapper").innerHTML) || html;
@@ -131,6 +138,17 @@ $(document).ready(function() {
         }
     }
 
+
+    // If admin, then create and instantiate summary information
+    if (localStorage.getItem("userData")) {
+        var userData = JSON.parse(localStorage.getItem("userData"));
+        if (isAdmin(userData)){
+            instantiateAdminSummary(userData);
+        } else {
+
+        }
+    }
+
     // // first time user
     //     if (!localStorage["tasks"]) {
 
@@ -142,6 +160,26 @@ $(document).ready(function() {
     // tasks = JSON.parse(localStorage["tasks"]);
     // }
 });
+
+// Function to create and instantiate summary of all tasks and parent participation
+var instantiateAdminSummary = function(data) {
+    // First grab number of tasks from keys in localStorage
+    var tasks = JSON.parse(localStorage.getItem("keys"));
+    // Create the proper divs based on tasks
+    var adminSummaryDiv = '<div class="adminSummary">'
+    adminSummaryDiv += '<h3>Tasks Participation Summary</h3>'
+    adminSummaryDiv += '<ul class="adminSummary summaryTasks list-group">'
+    adminSummaryDiv += '<li class="list-group-item active listHeader">Summary for Tasks</li>'
+
+    // Loop through all the tasks created
+    for (i= tasks.length - 1; i >= 0; i--) {
+        var randomNumber = Math.floor((Math.random()*20) + 20)
+        adminSummaryDiv += '<li class="list-group-item">' + tasks[i] + ' <span class="badge">' + randomNumber + ' completed</span></li>';
+    }
+    adminSummaryDiv += '</ul>';
+    adminSummaryDiv += '</div>';
+    $('h1').after(adminSummaryDiv);
+}
 
 function dele(elt) {
     taskNumber -= 1;

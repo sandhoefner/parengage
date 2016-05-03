@@ -4,16 +4,20 @@
     <title>Parengage - Tasks</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="css/simple-sidebar.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-    <script src="js/toolbar.js"></script>
     <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="js/parentHelpers.js"></script>
+    <script src="js/toolbar.js"></script>
 
     <div class="col-md-4 col-sm-6 col-xs-8" id="content">
 
         <h1>Parengage - Tasks</h1>
-        <div class="taskWrapper" id="taskWrapper"><button id='submit' class='btn btn-info' type='submit' onclick='submit();'>Submit</button></div>
+        <div class="taskWrapper" id="taskWrapper">
+            <!--<button id='submit' class='btn btn-info' type='submit' onclick='submit();'>Submit</button>!-->
+        </div>
 
         <!--  
       If you have a moment, please call a few of these parents and ask them to volunteer for the bake sale! If you do call anyone, please check their box and press "submit" so we don't call them again.<br>
@@ -47,6 +51,13 @@
 
     <script>
         $(document).ready(function() {
+            // Clear Notifications on visit if they exist
+            var userData = JSON.parse(localStorage.getItem("userData"));
+            console.log(userData);
+            if (!isAdmin(userData)) {
+                clearNotifications("Tasks");
+            }
+
             var taskNumber = 1;
 
             // function init(name, body, list) {
@@ -84,6 +95,8 @@
                     //
                     html += '<span><input type="checkbox" class="checkbox_actual" id="' + list[i] + '">' + list[i] + '</input><br></span>';
                 }
+                html += "<button id='submit' class='btn btn-info' type='submit'>Submit</button>"
+
                 html += "</div>";
                 // html += '<p><a class="clickable" onclick="dele(this.parentElement.parentElement);">Delete</a></p>';
                 html += '</div>';
@@ -126,6 +139,17 @@
                     // console.log("init");
                     // console.log(keys.length);
                 }
+            }
+
+            $("#submit").click(function() {
+                var thisObject = this;
+                submitClear(thisObject);
+            })
+
+            var submitClear = function(thisObject) {
+                $(thisObject).parent().parent().append("Thanks for your feedback");
+                $(thisObject).parent().hide();
+                submit();
             }
 
 
