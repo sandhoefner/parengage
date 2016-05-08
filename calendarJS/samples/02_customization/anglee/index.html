@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <title>Ang Lee - Jessica Wang</title>
+       <link rel="stylesheet" href="css/style.css"/>
+	   <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+       <link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
+	   <link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
+	   <link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>	
+	   <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+	   <link href='http://fonts.googleapis.com/css?family=Goudy+Bookletter+1911' rel='stylesheet' type='text/css'>
+	<script>
+   
+// <!----- JQUERY FOR SLIDING NAVIGATION --->   
+$(document).ready(function() {
+  $('a[href*=#]').each(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+    && location.hostname == this.hostname
+    && this.hash.replace(/#/,'') ) {
+      var $targetId = $(this.hash), $targetAnchor = $('[name=' + this.hash.slice(1) +']');
+      var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
+       if ($target) {
+         var targetOffset = $target.offset().top;
+
+// <!----- JQUERY CLICK FUNCTION REMOVE AND ADD CLASS "ACTIVE" + SCROLL TO THE #DIV--->   
+         $(this).click(function() {
+            $("#nav li a").removeClass("active");
+            $(this).addClass('active');
+           $('html, body').animate({scrollTop: targetOffset}, 1000);
+           return false;
+         });
+      }
+    }
+  });
+
+});
+
+
+</script>
+
+
+ </head> 
+	
+<body>
+
+<!--HEADER START-->  
+<header id="header">
+<div class="content">
+<div id="logo"><a href=""> ANG LEE </a></div>
+<nav id="nav">
+	<ul>
+		<li><a href="#diasporastart" class="active" title="Next Section">Hometown</a></li>
+		<li><a href="#fatherstart" title="Next Section">Father</a></li>
+		<li><a  href="#auteurstart" title="Next Section">Auteur</a></li>
+	</ul>
+</nav>
+</div>
+</header>	
+<!--HEADER END-->
+
+<!-- SLIDES START-->	
+	<div id="home">
+		<div class="content">
+			<div class="quotes_container_right">
+	            <h1>ANG LEE</h1>
+			    <h3>Academy Award Winning Director</h3>
+			    <br>
+			    <br>
+			    <br>
+			    <br>
+			    <h5>Jessica Wang</h5>
+			    <h5>East Asian Cinema Final Project</h5>
+		    </div>
+		</div> 
+    </div> 
+
+    <div id="diasporastart">
+		<div class="content" >
+		    <h3 class="sectionstart">JOURNEY TO FIND HIS HOMETOWN</h3>
+		</div> 
+    </div> 
+
+	<div id="diaspora1">
+		<div class="content">
+			<div class="quotes_container_middle">
+			   <br>
+			   <br>
+			   <br>
+		       <h3 class="quotesbig">“I'm a drifter and an outsider. There's not one single environment I can totally belong to”  </h3>
+		    </div> 
+		</div> 
+    </div> 
+	
+	<div id="diaspora2">
+		<div class="content" >
+            <h3 class="sectiondescription">Taiwanese born and America educated, Ang Lee fails to have a personal identity within either society. Lee's personal diaspora between two conflicting cultures is reflected in his films as they explore themes of self discovery within rigid social codes and parental pressures.</h3>
+		</div> 
+    </div> 
+
+    <div id="diaspora3">
+		<div class="content" >
+			<div class="quotes_container_middle">
+            	<h3 class="photobottom">In <i>The Wedding Banquet</i>, Wai-Tung Gao battles between his parent's traditional Chinese beliefs and his own homosexual identifications. </h3>
+            </div>
+		</div> 
+    </div> 
+
+    <div id="diaspora4">
+		<div class="content" >
+			<div class="quotes_container_middle">
+            	<h3 class="photobottom">In <i>Hulk</i>, Bruce attempts to control his anger to prevent his extermination that society desires and please his father.</h3>
+            </div>
+		</div> 
+    </div> 
+
+    <div id="diaspora5">
+		<div class="content" >
+			<div class="quotes_container_middle">
+            	<h3 class="photobottom">In <i>Brokeback Mountain</i>, Jack and Ennis deny their love for each other due to societal pressures and unacceptance.</h3>
+            </div>
+		</div> 
+    </div> 
+
+    <div id="diaspora6">
+		<div class="content" >
+            <h3 class="sectiondescription">Along with exploring themes of diaspora within his films, Ang Lee utilizes a diverse crew on most films allowing various international influences.</h3>
+		</div> 
+    </div> 
+
+    <div id="diaspora7">
+		<div class="content" >
+			<div class="quotes_container_middle">
+            	<h3 class="photobottom">In <i>Sense and Sensibility</i>, Ang Lee moves from Taiwainese films to British films, marking his first endeavor into international film industries.</h3>
+
+            </div>
+		</div> 
+    </div>
+
+    <div id="diaspora8">
+		<div class="content" >
+			<div class="quotes_container_middle">
+            	<h3 class="photobottom">British screenwriter and actress Emma Thompson remembers some miscommunications in the director-actor interactions stemming from the different film environments in both countries. After they “passed each other in the night unwittingly and pushed [apology] notes under each other’s doors” both adapted. Thompson fondly remembers the experience saying “we had the most wonderful time because his notes were so brutal and funny.”</h3>
+
+            </div>
+		</div> 
+    </div>  
+
+    <div id="diaspora9">
+		<div class="content" >
+			<div class="quotes_container_middle">
+            	<h3 class="photobottom">Perhaps Ang Lee’s most recent film <i>Life of Pi</i> has the most multicultural influences. Ang Lee replaced Tobey Maguire within the film because he “decided to go with an entirely international cast”. The movie was filmed across the world in India, Taiwan and Canada. The 3D effects of the film were create in collaboration with artists in LA, India, Malaysia, Canada and Taiwan.</h3>
+
+            </div>
+		</div> 
+    </div> 
+
+    <div id="diaspora10">
+		<div class="content" >
+			<div class="quotes_container_middle">
+            	<h3 class="photobottom">Ang Lee's return to Taiwan to film <i>Life of Pi</i> was particularly special to him. “It was very emotional for me filming Life of Pi in Taiwan. Everybody wanted to help and make it happen … It was like coming full circle, going back there”</h3>
+
+            </div>
+		</div> 
+    </div> 
+
+    <div id="diaspora11">
+		<div class="content">
+            <h3 class="sectiondescription">Because of the personal diaspora Ang Lee faces and the international influences he draws upon, Lee’s films fail to accurately display many cultures instead giving them westernized and stereotypical features.</h3>
+		</div> 
+    </div>
+
+    <div id="diaspora12">
+		<div class="content" >
+			<div class="quotes_container_middle">
+            	<h3 class="photobottom">While the wuxia elements of <i> Crouching Tiger, Hidden Dragon </i> clearly derive from East Asian culture, many elements were changed slightly to appeal to international audiences. The emphasis on female characters hides the imbalance of gender roles within China. The English subtitles also lose cultural references in the original script. </h3>
+            </div>
+		</div> 
+    </div> 
+
+	<div id="fatherstart">
+		<div class="content">
+            <h3 class="sectionstart">JOURNEY WITH HIS FATHER</h3>
+		</div> 
+    </div> 
+
+    <div id="father1">
+		<div class="content" >
+			<div class="quotes_container_middle">
+			   <br>
+			   <br>
+			   <br>
+		       <h3 class="quotesbig">“My father represented the traditional Chinese patriarchal society. I was always living in his shadow; that was my big thing”</h3>
+		    </div> 
+		</div> 
+    </div> 
+
+	<!--  <div id="slide3">
+		<div class="content">
+			   <div class="quotes_container_left">
+		       <h3 class="quotes">“I truly believe that if we keep telling the Christmas story, singing the Christmas songs, and living the Christmas spirit, we can bring joy and happiness and peace to this world.”  </h3>
+		    </div> 
+		</div> 
+    </div> 
+ -->
+
+    <div id="auteurstart">
+		<div class="content" >
+            <h3 class="sectionstart">JOURNEY TO BE AN AUTEUR</h3>
+		</div> 
+    </div> 
+
+	<div id="end">
+		<div class="content">
+		    <div class="quotes_container_middle">
+			   <br>
+			   <br>
+			   <br>
+			   <br>
+			   <br>
+			   <br>
+			   <br>
+			   <br>
+			   <br>
+		       <h3 class="quotesbig">“What is the ultimate freedom? For me it’s making movies” </h3>
+		    </div> 
+		</div> 
+    </div> 
+	
+<!--SLIDES END-->
+
+</body>
+</html>
